@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Geradeaus · Your route after school</title>
+<style>
+:root{--bg:#F4F1FA;--card:#fff;--ink:#1E1B33;--mute:#625D80;--line:#D9D3EC;--acc:#5B3FD6;--accbg:#E6E0FB;--warn:#B4540A;--warnbg:#FDEBD8;--bad:#B3261E;--on:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#14112A;--card:#1E1A3A;--ink:#EEEBFA;--mute:#AAA5CC;--line:#34305A;--acc:#A99BFF;--accbg:#2C2760;--warn:#F5B05A;--warnbg:#3A2A14;--bad:#FF8F85;--on:#14112A}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 "Segoe UI","Avenir Next",system-ui,sans-serif}
+main{max-width:680px;margin:0 auto;padding:20px 16px 48px}
+h1,h2,h3{font-family:Georgia,"Times New Roman",serif;line-height:1.2;margin:0}
+h1{font-size:28px}h2{font-size:22px;margin-top:28px}h3{font-size:17px}
+p{margin:0}.mute{color:var(--mute);font-size:14px}
+.brand{display:flex;align-items:center;gap:8px;margin-bottom:16px;font-family:Georgia,serif;font-size:20px}
+.brand i{margin-right:14px;width:12px;height:12px;border-radius:50%;background:var(--acc);box-shadow:14px 0 0 -3px var(--acc)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:12px}
+label.q{display:block;font-weight:600;margin:20px 0 4px}
+.hint{font-size:13.5px;color:var(--mute);margin-bottom:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 13px;font-family:inherit;font-size:15px;cursor:pointer}
+.chip[aria-pressed="true"]{border-color:var(--acc);background:var(--accbg);font-weight:600}
+button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.btn{width:100%;margin-top:24px;border:0;border-radius:12px;background:var(--acc);color:var(--on);font-weight:600;font-size:17px;font-family:inherit;padding:14px;cursor:pointer}
+.back{background:none;border:0;color:var(--acc);font-weight:600;font-size:15px;font-family:inherit;padding:4px 0;cursor:pointer}
+.sum{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.sum span,.tag{background:var(--accbg);border-radius:8px;padding:2px 9px;font-size:13px;display:inline-block}
+.tag.warn{background:var(--warnbg);color:var(--warn)}.tag.bad{background:var(--warnbg);color:var(--bad)}
+.ck{display:flex;gap:10px;margin-top:10px;font-size:15px}.ck b{flex:none;width:22px;height:22px;border-radius:50%;text-align:center;font-size:13px;line-height:22px;background:var(--accbg);color:var(--acc)}
+.ck.w b{background:var(--warnbg);color:var(--warn)}
+details.u{background:var(--card);border:1px solid var(--line);border-radius:14px;margin-top:12px}
+details.u summary{list-style:none;cursor:pointer;padding:14px 16px}
+details.u summary::-webkit-details-marker{display:none}
+details.u summary:after{content:"Details ›";float:right;color:var(--acc);font-size:13px;font-weight:600}
+details.u[open] summary:after{content:"Hide ‹"}
+.u h3{margin-bottom:6px}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.body{padding:0 16px 16px;border-top:1px solid var(--line)}
+.f{margin-top:12px;font-size:14.5px}.f span{display:block;color:var(--mute);font-size:12.5px}
+.src{font-size:12.5px;color:var(--mute);margin-top:12px}
+.calc input[type=range]{width:100%;accent-color:var(--acc)}
+.calc label{display:flex;justify-content:space-between;font-size:14.5px;margin-top:10px}
+.res{margin-top:12px;font-size:14.5px}.res strong{font-size:18px}
+.res li{margin-top:4px}
+.note{font-size:12.5px;color:var(--mute);margin-top:24px;text-align:center}
+[hidden]{display:none!important}
+.gr{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:15px}
+select{font:inherit;padding:6px 8px;border-radius:8px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.err{color:var(--bad);font-size:14px;margin-top:10px;min-height:1px}
+details.u summary{display:flex;gap:12px;align-items:flex-start}
+details.u summary:after{float:none;flex:none;margin-top:3px;white-space:nowrap}
+.sc{flex:1;min-width:0}
+.lnk{background:none;border:1.5px solid var(--acc);color:var(--acc);border-radius:10px;padding:8px 13px;font:inherit;font-weight:600;font-size:14.5px;cursor:pointer;margin-top:12px}
+.why{font-size:14.5px;margin-top:8px}
+.pill{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+:root{--bg:#FFF6EA;--card:#fff;--ink:#22183A;--mute:#6B6180;--line:#EBDDCB;--acc:#7B3FE4;--accbg:#EFE5FF;--btn1:#6A35D6;--btn2:#D6336C;--c1:#FF5C7A;--c2:#FF9F1C;--c3:#1FB58F;--c4:#2F80ED;--c5:#A259FF;--c6:#F2B705;--grad:linear-gradient(120deg,var(--c1),var(--c2),var(--c6),var(--c3),var(--c4),var(--c5))}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#120E24;--card:#1D1838;--ink:#F3EEFF;--mute:#B2A9D3;--line:#3A3265;--acc:#B592FF;--accbg:#2E2461;--btn1:#B592FF;--btn2:#FF7B93;--c1:#FF7B93;--c2:#FFB347;--c3:#43D9B0;--c4:#6AA6FF;--c5:#C39BFF;--c6:#FFD84D;--on:#120E24}}
+body{background:radial-gradient(circle at 8% -8%,color-mix(in srgb,var(--c1) 24%,transparent),transparent 42%),radial-gradient(circle at 100% 4%,color-mix(in srgb,var(--c4) 22%,transparent),transparent 46%),radial-gradient(circle at 50% 110%,color-mix(in srgb,var(--c3) 18%,transparent),transparent 45%),var(--bg);background-attachment:fixed}
+#pg{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:4px;width:0;background:var(--grad);z-index:20}
+.brand{font-weight:700;background:var(--grad);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 8s linear infinite}
+.brand i{background:var(--c1);box-shadow:14px 0 0 -3px var(--c4)}
+h1::after{content:"";display:block;height:5px;width:76px;margin-top:10px;border-radius:9px;background:var(--grad);background-size:300% 100%;animation:flow 6s linear infinite}
+h2::before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;background:var(--grad)}
+.chip{transition:transform .15s,box-shadow .15s,background .2s,border-color .2s}
+.chips .chip:nth-child(6n+1){--k:var(--c1)}.chips .chip:nth-child(6n+2){--k:var(--c2)}.chips .chip:nth-child(6n+3){--k:var(--c3)}.chips .chip:nth-child(6n+4){--k:var(--c4)}.chips .chip:nth-child(6n+5){--k:var(--c5)}.chips .chip:nth-child(6n){--k:var(--c6)}
+.chips .chip{border-color:color-mix(in srgb,var(--k,var(--acc)) 60%,var(--line))}
+.chips .chip:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 6px 14px color-mix(in srgb,var(--k,var(--acc)) 30%,transparent)}
+.chips .chip[aria-pressed="true"]{background:color-mix(in srgb,var(--k,var(--acc)) 24%,var(--card));border-color:var(--k,var(--acc));animation:pop .3s}
+.btn{background:linear-gradient(120deg,var(--btn1),var(--btn2));background-size:160% 100%;transition:transform .15s,box-shadow .2s,background-position .4s;box-shadow:0 8px 20px color-mix(in srgb,var(--btn2) 35%,transparent)}
+.btn:hover{transform:translateY(-2px);background-position:100% 0}.btn:active{transform:scale(.98)}
+.card,details.u{animation:rise .5s both}
+.card{border-left:6px solid var(--c3)}.card.calc{border-left-color:var(--c2)}
+details.u{border-left:6px solid var(--k,var(--c4));transition:transform .2s,box-shadow .2s}
+details.u:nth-of-type(6n+1){--k:var(--c1)}details.u:nth-of-type(6n+2){--k:var(--c2)}details.u:nth-of-type(6n+3){--k:var(--c3)}details.u:nth-of-type(6n+4){--k:var(--c4)}details.u:nth-of-type(6n+5){--k:var(--c5)}details.u:nth-of-type(6n){--k:var(--c6)}
+details.u:nth-of-type(2){animation-delay:.05s}details.u:nth-of-type(3){animation-delay:.1s}details.u:nth-of-type(4){animation-delay:.15s}details.u:nth-of-type(5){animation-delay:.2s}details.u:nth-of-type(n+6){animation-delay:.25s}
+details.u:hover,details.u[open]{transform:translateY(-2px);box-shadow:0 10px 24px color-mix(in srgb,var(--k,var(--c4)) 28%,transparent)}
+.tag:not(.warn):not(.bad):nth-child(5n+1){background:color-mix(in srgb,var(--c4) 22%,transparent)}.tag:not(.warn):not(.bad):nth-child(5n+2){background:color-mix(in srgb,var(--c5) 24%,transparent)}.tag:not(.warn):not(.bad):nth-child(5n+3){background:color-mix(in srgb,var(--c3) 24%,transparent)}
+.sum span:nth-child(3n+1){background:color-mix(in srgb,var(--c1) 22%,transparent)}.sum span:nth-child(3n+2){background:color-mix(in srgb,var(--c2) 26%,transparent)}.sum span:nth-child(3n){background:color-mix(in srgb,var(--c4) 22%,transparent)}
+.ck b{background:color-mix(in srgb,var(--c3) 28%,transparent);color:var(--ink)}.ck.w b{background:color-mix(in srgb,var(--c2) 35%,transparent)}
+input[type=range]{accent-color:var(--acc)}
+@keyframes flow{to{background-position:300% 0}}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pop{50%{transform:scale(1.1)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+:root{--bg:#F7F7F8;--card:#fff;--ink:#0E0E10;--mute:#5E5E66;--line:#E2E2E6;--acc:#D7263D;--accbg:#FDE7EA;--on:#fff;--warn:#8A5200;--warnbg:#FFF1CC;--bad:#B3122A;--btn1:#0E0E10;--btn2:#D7263D;--c1:#D7263D;--c2:#F2A900;--c3:#0E0E10;--c4:#D7263D;--c5:#F2A900;--c6:#0E0E10;--grad:linear-gradient(120deg,var(--c1),var(--c2),var(--c1))}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B0B0D;--card:#17171A;--ink:#F5F5F6;--mute:#A5A5AD;--line:#2C2C31;--acc:#FF4D5E;--accbg:#3A1218;--on:#fff;--warn:#FFC21A;--warnbg:#3A2E0A;--bad:#FF7A86;--btn1:#D7263D;--btn2:#8F0F20;--c1:#FF4D5E;--c2:#FFC21A;--c3:#F5F5F6;--c4:#FF4D5E;--c5:#FFC21A;--c6:#F5F5F6}}
+body{background:radial-gradient(circle at 6% -6%,color-mix(in srgb,var(--c1) 14%,transparent),transparent 40%),radial-gradient(circle at 100% 6%,color-mix(in srgb,var(--c2) 14%,transparent),transparent 42%),var(--bg);background-attachment:fixed}
+body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;filter:blur(50px);opacity:.5;background:radial-gradient(circle at 20% 30%,color-mix(in srgb,var(--c1) 22%,transparent),transparent 30%),radial-gradient(circle at 80% 70%,color-mix(in srgb,var(--c2) 20%,transparent),transparent 30%);animation:drift 20s ease-in-out infinite alternate}
+h1{animation:rise .6s both}
+.card,details.u{box-shadow:0 2px 10px rgba(14,14,16,.07);background-image:radial-gradient(260px circle at var(--mx,50%) var(--my,-60%),color-mix(in srgb,var(--c1) 13%,transparent),transparent 70%)}
+.card{border-left-color:var(--c1)}.card.calc{border-left-color:var(--c2)}
+details.u[open] .body{animation:rise .35s both}
+.btn{position:relative;overflow:hidden;animation:pulse 2.6s ease-in-out infinite}
+.btn::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-100%)}
+.btn:hover::after{transform:translateX(100%);transition:transform .7s}
+@keyframes drift{to{transform:translate(4%,-3%) scale(1.1)}}
+@keyframes pulse{50%{box-shadow:0 8px 30px color-mix(in srgb,var(--btn2) 60%,transparent)}}
+.lv{display:grid;gap:12px;margin-top:22px}.lvb{display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;padding:18px;border-radius:16px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;cursor:pointer;transition:transform .2s,box-shadow .2s,border-color .2s;animation:rise .5s both}.lvb b{font-family:Georgia,serif;font-size:22px}.lvb span{color:var(--mute);font-size:14px}.lvb:first-child{border-left:8px solid var(--c1)}.lvb:last-child{border-left:8px solid var(--c2);animation-delay:.08s}.lvb:hover{transform:translateY(-3px);border-color:var(--acc);box-shadow:0 10px 24px color-mix(in srgb,var(--c1) 22%,transparent)}
+.f a,.src a,.card a{color:var(--acc);font-weight:600}
+</style></head>
+<body><div id="pg"></div><main>
+<div class="brand"><i></i>Geradeaus</div>
+
+<section id="s00"><h1>Which system are you in?</h1><p class="mute" style="margin-top:8px">Pick your education system. We’ll ask the right questions and give advice that fits it.</p><div class="lv"><button class="lvb" data-s="C"><b>O Levels / A Levels</b><span>Cambridge system, with IBCC equivalence</span></button><button class="lvb" data-s="P"><b>Matric / Intermediate</b><span>Pakistani boards: SSC and HSSC (FSc, ICS, I.Com, FA)</span></button></div></section>
+<section id="sm0" hidden><button class="back" id="bm0">‹ Change system</button><h1>Where are you right now?</h1><p class="mute" style="margin-top:8px">Pick your level. We’ll tailor the questions and the advice to it.</p><div class="lv"><button class="lvb" data-m="M"><b>Matric</b><span>Planning my Intermediate group and what comes after</span></button><button class="lvb" data-m="I"><b>Intermediate</b><span>Mapping my route to university</span></button></div></section>
+<section id="sm" hidden></section><section id="sm2" hidden></section>
+<section id="s0" hidden><button class="back" id="b00">‹ Change system</button><h1>Where are you right now?</h1><p class="mute" style="margin-top:8px">Pick your level. We’ll tailor the questions and the advice to it.</p><div class="lv"><button class="lvb" data-l="O"><b>O Levels</b><span>Planning my A Levels and what comes after</span></button><button class="lvb" data-l="A"><b>A Levels</b><span>Mapping my route to university</span></button></div></section>
+<section id="s1" hidden><button class="back" id="b0">‹ Change level</button>
+<h1 id="t1">You’re in A Levels. Let’s map your route.</h1>
+<p class="mute" id="p1" style="margin-top:8px">Enter your real O Level results and your A Level plan. We’ll convert them the way IBCC does and show what you need for your goal, or help you find one.</p>
+<label class="q">Which field are you interested in?</label>
+<p class="hint">Pick a broad field, or a specific profession if you already know it.</p>
+<div data-k="goal">
+<div class="chips"><button class="chip" data-v="un">Not sure yet</button></div>
+<p class="hint" style="margin:16px 0 8px;font-weight:600">Fields</p>
+<div class="chips">
+<button class="chip" data-v="ds">Data science and AI</button>
+<button class="chip" data-v="ah">Allied health</button>
+<button class="chip" data-v="biz">Business and finance</button>
+<button class="chip" data-v="arch">Architecture and design</button>
+<button class="chip" data-v="psy">Psychology and social sciences</button>
+<button class="chip" data-v="media">Media and arts</button>
+<button class="chip" data-v="agri">Agriculture and environment</button></div>
+<p class="hint" style="margin:16px 0 8px;font-weight:600">Professions</p>
+<div class="chips">
+<button class="chip" data-v="sw" aria-pressed="true">Software engineer</button>
+<button class="chip" data-v="eng">Engineer</button>
+<button class="chip" data-v="md">Doctor</button>
+<button class="chip" data-v="law">Lawyer</button></div>
+</div>
+<div id="bun" hidden><label class="q">What do you enjoy?</label><p class="hint">Tap any that sound like you.</p><div class="chips" id="intr"></div></div>
+<label class="q" id="lst">Where are you in A Levels?</label>
+<div class="chips" data-k="stage"><button class="chip" data-v="AS" aria-pressed="true">Starting (AS year)</button><button class="chip" data-v="A2">Final year (A2)</button></div>
+<label class="q">Exam years</label><p class="hint">IBCC sets equivalence session by session, so pick the year of each exam. For exams still ahead, pick the year you’ll sit them.</p><label class="gr"><span>O Level session</span><select id="yo"></select></label><label class="gr"><span>A Level session</span><select id="ya"></select></label>
+<label class="q" id="lo">Your O Level grades</label><p class="hint">IBCC counts exactly these eight: English, Urdu, Islamiyat, Pakistan Studies, Mathematics, Physics, Chemistry, and Biology or Computer Science. If you took both Biology and Computer Science, the higher one counts. Other O Level subjects don’t count toward equivalence.</p>
+<div id="og"></div>
+<label class="q" id="la">Your A Level subjects</label><p class="hint" id="ha">Tap the ones you’re taking, then set the grade you expect in each.</p>
+<input id="afl" type="search" placeholder="Search A Level subjects" style="width:100%;padding:10px 12px;margin-bottom:8px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:inherit"><div class="chips" id="als"></div><div id="ag" style="margin-top:8px"></div>
+<label class="q">Your domicile</label>
+<div class="chips" data-k="dom"><button class="chip" data-v="Karachi" aria-pressed="true">Karachi</button><button class="chip" data-v="Sindh">Other Sindh (Hyderabad, Sukkur, Larkana…)</button><button class="chip" data-v="Punjab">Punjab</button><button class="chip" data-v="Khyber Pakhtunkhwa">Khyber Pakhtunkhwa</button><button class="chip" data-v="Balochistan">Balochistan</button><button class="chip" data-v="Islamabad Capital Territory">Islamabad</button><button class="chip" data-v="Azad Jammu and Kashmir">Azad Kashmir</button><button class="chip" data-v="Gilgit-Baltistan">Gilgit-Baltistan</button></div>
+<label class="q">Budget for fees per year</label>
+<div class="chips" data-k="b"><button class="chip" data-v="100">Under PKR 1 lakh</button><button class="chip" data-v="400" aria-pressed="true">Up to 4 lakh</button><button class="chip" data-v="1200">Up to 12 lakh</button><button class="chip" data-v="2000">Up to 20 lakh</button><button class="chip" data-v="9999">More than 20 lakh</button></div>
+<div class="err" id="err"></div>
+<button class="btn" id="go">Check your paths</button>
+</section>
+
+<section id="s2" hidden></section>
+<p class="note">Last updated: 25 October 2026. Prototype. Fees, seats and merit figures come from university pages and education sites, and often disagree. Confirm everything on the official pages before deciding.</p>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const GP={"A*":90,"A":85,"B":75,"C":65,"D":55,"E":45};
+const GR=Object.keys(GP);
+// IBCC A* marks are set subject by subject for each exam session (A to E are fixed). Source: ibcc.edu.pk/conversion-for-equivalence
+// "_" = any other subject. Before 2021 there is no table, so A* falls back to 90. After LATEST_SES the newest table is reused.
+const LATEST_SES=2026;
+const STAR={
+ O:{2021:{Mathematics:95,"Pakistan Studies":93,English:93,Urdu:93,_:94},
+    2022:{"Computer Science":96,_:95},
+    2023:{Mathematics:95,Islamiyat:95,Urdu:93,_:94},
+    2024:{English:93,Urdu:93,"Pakistan Studies":93,_:94},
+    2025:{English:93,Urdu:93,"Pakistan Studies":93,_:94},
+    2026:{English:93,Urdu:93,_:94}},
+ A:{2021:{Biology:94,_:93},
+    2022:{Biology:94,"Computer Science":94,Mathematics:94,Chemistry:95,Physics:95,_:95},
+    2023:{Physics:95,_:94},
+    2024:{Physics:95,Mathematics:95,_:94},
+    2025:{Physics:95,"Computer Science":93,_:94},
+    2026:{Physics:95,"Computer Science":93,_:94}}};
+const apts=x=>pt(S.ag[x]||"B",x,"A",+$("ya").value);
+const sesKey=y=>y<2021?null:Math.min(+y,LATEST_SES);
+function pt(g,sub,lvl,y){
+ if(g!=="A*")return GP[g];
+ const k=sesKey(y);if(k===null)return GP["A*"];
+ const t=STAR[lvl][k];return t[sub]!==undefined?t[sub]:t._}
+const OSUB=["English","Mathematics","Urdu","Islamiyat","Pakistan Studies","Physics","Chemistry","Biology","Computer Science"];
+const AS=["Mathematics","Physics","Chemistry","Biology","Computer Science","Further Maths","Economics","Business","Psychology","Accounting","Law","Sociology","Geography","History","English Literature","English Language","Urdu","Pakistan Studies","Islamic Studies","Art and Design","Design and Technology","Environmental Management","Statistics","Information Technology","Computing","Marine Science","Media Studies","Global Perspectives","Travel and Tourism","Thinking Skills","General Paper","Politics","Classical Studies","Religious Studies","Physical Education","Music","Drama","Textiles","Food Science","Digital Media and Design","Business Studies","Law","Biotechnology","Agriculture","Arabic","French","German","Spanish","Chinese","Hindi","Italian","Japanese","Portuguese","Turkish","Punjabi","Pashto","Sindhi","Persian"];
+const INT=[["bio","Biology and the human body"],["math","Maths and logic puzzles"],["build","Building and fixing things"],["tech","Computers and technology"],["biz","Business and money"],["help","Helping people directly"]];
+const S={goal:"sw",stage:"AS",dom:"Karachi",b:"400",og:{},as:new Set(["Mathematics","Physics"]),ag:{},int:new Set()};
+const U=[
+{n:"NED University",c:"Karachi",t:"Public",tier:3,lo:50,hi:81,need:["Mathematics"],conf:"Reported",
+ fee:"About PKR 50k–81k per semester (sources differ).",test:"NED entry test.",when:"Sits in the usual June–July admissions season. Confirm the date on neduet.edu.pk.",
+ merit:"Reported formula: 40% intermediate/A Level + 60% entry test.",close:"Closing merit not verified yet.",
+ note:"Cheapest strong option in Karachi. A good safe-but-solid choice."},
+{n:"FAST-NUCES Karachi",c:"Karachi",t:"Private",tier:4,lo:160,hi:220,need:["Mathematics"],conf:"Reported",
+ fee:"About PKR 1.6–2.2 lakh per semester, plus a one-time PKR 30,000 admission fee.",test:"NU Test, computer-based, about 2 hours: maths (heaviest), English, reasoning, computer basics. SAT (about 1200+) is also accepted.",when:"Last cycle: apply and test in June–July, classes from mid-August.",
+ merit:"10% matric/O Level + 40% intermediate/A Level + 50% entry test.",close:"BS CS closed around 70% at Karachi (Lahore about 73%, Islamabad about 75%).",
+ note:"Strong industry reputation. Merit scholarships exist; ask the campus."},
+{n:"IBA Karachi",c:"Karachi",t:"Private",tier:4,lo:440,hi:500,need:["Mathematics"],conf:"Official eligibility, reported fee",
+ fee:"About PKR 4.4–5 lakh per semester (reported). Check IBA for current fees and financial aid.",test:"IBA Aptitude Test plus an interview. SAT scores are also considered; the higher score counts.",when:"Dates vary each year. Check the admissions page on iba.edu.pk.",
+ merit:"Decided by aptitude test (or SAT) and interview.",close:"Cut-off not published in sources I found.",
+ note:"A Level rule: at least 1 B and 2 Cs in three principal subjects, including Maths. IBCC equivalence is required."},
+{n:"DHA Suffa University",c:"Karachi",t:"Private",tier:2,lo:null,hi:null,need:["Mathematics"],conf:"Official eligibility",
+ fee:"Fee not verified yet. Check dsu.edu.pk.",test:"DSU Entrance Test, at least 50% needed. NED, SAT or NTS scores can also be used.",when:"Check the DSU admissions page.",
+ merit:"Intermediate/A Level with at least 50% and Maths as a major subject.",close:"Not published in sources I found.",
+ note:"Good fallback in Karachi. Failures and improvement-exam candidates are not eligible."},
+{n:"NUST (SEECS)",c:"Islamabad",t:"Public",tier:5,lo:150,hi:300,need:["Mathematics"],conf:"Reported",
+ fee:"Roughly PKR 1.5–3 lakh per semester (sources differ), plus hostel.",test:"NUST Entry Test (NET), several series. SAT/ACT accepted for limited seats.",when:"Last cycle’s applications closed in late June.",
+ merit:"NET score plus academic marks.",close:"Reported around 70–74% (low-confidence source).",
+ note:"Top-ranked CS program. Very competitive."},
+{n:"LUMS",c:"Lahore",t:"Private",tier:5,lo:900,hi:1000,need:["Mathematics"],conf:"Official dates, reported fee",
+ fee:"LUMS’s own first-year figure is about PKR 20 lakh (including admission fee). Other sites quote lower tuition-only numbers.",test:"LCAT, or SAT/ACT.",when:"Last cycle: apply by 27 Jan, LCAT around 15 Feb, SAT by 14 Mar, ACT by 11 Apr, financial aid forms by 28 Feb, decisions Apr–Jul, classes in September.",
+ merit:"Holistic: test, grades, teacher evaluation form.",close:"Not published.",
+ note:"Generous need-based aid is reported. Apply early; the calendar runs ahead of other universities."},
+{n:"GIKI",c:"Swabi",t:"Private",tier:5,lo:300,hi:400,need:["Mathematics","Physics"],conf:"Official eligibility, reported fee",
+ fee:"About PKR 3–4 lakh per semester (reported).",test:"Own entry test. Confirm on giki.edu.pk.",when:"Check the GIKI admissions page.",
+ merit:"A Level in Maths, Physics and one other subject, with D or above in Maths and Physics. Needs 8 O Level subjects.",close:"Not published in sources I found.",
+ note:"Physics is mandatory here. If you drop Physics, this door closes."},
+{n:"COMSATS University",c:"Islamabad",t:"Public",tier:3,lo:110,hi:115,need:["Mathematics"],conf:"Reported",
+ fee:"About PKR 110,500 per semester, plus PKR 22,000 admission and PKR 5,500 registration once.",test:"Entry test. Details not verified yet.",when:"Check the campus admissions page.",
+ merit:"Not verified.",close:"Not verified.",note:"Campuses in several cities, including Lahore and Islamabad."},
+{n:"Virtual University",c:"Online",t:"Distance",tier:1,lo:18,hi:22,need:[],conf:"Reported",
+ fee:"About PKR 18–22k per semester (PKR 850 per credit hour, PKR 3,000 admission, PKR 2,500 registration).",test:"Check vu.edu.pk for entry rules.",when:"Multiple intakes a year, check the site.",
+ merit:"Not merit-seat based as far as sources show.",close:"None found.",note:"Cheapest route and lets you work full-time. You’ll need to be self-disciplined, and the campus network is weaker."}
+];
+const C=[
+{n:"Dow Medical College (DUHS)",t:"Public",seats:"350 MBBS (reported)",close:86.4,lo:30,hi:50,conf:"Reported; DUHS prospectus is the official source",
+ fee:"About PKR 30,000–50,000 per year, excluding hostel and mess (reported). DUHS says open-merit tuition rises 10% each year.",
+ cl:"86.4% on open merit in the 2024 cycle (reported).",note:"Sindh’s flagship public medical college. Karachi district gets the largest block of open-merit seats, so your domicile matters a lot."},
+{n:"Jinnah Sindh Medical University",t:"Public",seats:"250–350 MBBS (sources differ)",close:85.1,lo:50,hi:60,conf:"Reported",
+ fee:"Public Sindh colleges are reported at about PKR 50,000–60,000 per year plus a one-time admission fee. Confirm JSMU’s exact fee.",
+ cl:"About 85.1% (reported, cycle not stated).",note:"A strong public alternative in Karachi. JSMU’s admissions director has been the source for several of the 2026 rule changes."},
+{n:"Dow International Medical College",t:"Public (DUHS)",seats:"100–150 MBBS (sources differ)",close:84.2,lo:null,hi:null,conf:"Reported",
+ fee:"Fee not verified. Check the DUHS prospectus; this college may charge more than Dow Medical College.",
+ cl:"About 84.2% (reported).",note:"Part of DUHS in Karachi. Merit lists are run through DUHS."},
+{n:"Karachi Medical and Dental College",t:"Public",seats:"250 MBBS, 100 BDS",close:null,lo:50,hi:60,conf:"Seats from Wikipedia; fee is the typical public range",
+ fee:"Typical public Sindh range of about PKR 50,000–60,000 per year. Not confirmed for this college.",
+ cl:"Closing merit not found.",note:"Another Karachi public option to list on your form so you have more than one chance."},
+{n:"Bahria University Medical & Dental College",t:"Private",seats:"100 MBBS, 50 BDS (reported)",close:80,lo:null,hi:null,conf:"Reported",
+ fee:"Fee not verified. Check the college page.",cl:"About 80% (reported).",note:"Private, so you can usually apply alongside public colleges. Still needs MDCAT."},
+{n:"Karachi Institute of Medical Sciences",t:"Private",seats:"100 MBBS",close:null,lo:950,hi:1200,conf:"Reported",
+ fee:"About PKR 9.5–12 lakh per year, plus a PKR 50,000 admission fee (reported).",cl:"Closing merit not found.",note:"Typical of private colleges. Check recognition status before applying."},
+{n:"Baqai Medical College",t:"Private",seats:"100 MBBS, 75 BDS",close:null,lo:null,hi:null,conf:"Seats from Wikipedia",
+ fee:"Fee not verified. Private colleges in Sindh are generally reported at PKR 9.5–12 lakh per year, but check Baqai directly.",cl:"Closing merit not found.",note:"A private fallback in Karachi."},
+{n:"Aga Khan University Medical College",t:"Private",seats:"100 MBBS",close:null,lo:1700,hi:1700,conf:"Reported (2025 figure)",
+ fee:"About PKR 17 lakh per year in tuition (a 2025 figure). Ask AKU about financial aid.",cl:"AKU is reported to use its own admission process, not just the aggregate. Confirm how it uses MDCAT.",note:"Top private option. Applications and tests run on AKU’s own calendar, so check early."}
+];
+// extra data for new goals (fees per semester, PKR thousand)
+const DSX=[
+{n:"Air University Karachi",c:"Karachi",t:"University",tier:2,lo:null,hi:null,need:["Mathematics"],conf:"Official eligibility",
+ fee:"Fee not verified. Check au.edu.pk.",test:"Entry test details not verified.",when:"Last cycle’s deadline was early July. Check the admissions page.",
+ merit:"Intermediate or A Level with at least 50% and Maths studied.",close:"Not published in sources I found.",note:"A Karachi campus offering several computing degrees.",p:"BS Data Science, BS Artificial Intelligence, BS Cyber Security."},
+{n:"SZABIST Karachi",c:"Karachi",t:"Private",tier:2,lo:null,hi:null,need:[],conf:"Reported",
+ fee:"Fee not verified. Check szabist.edu.pk.",test:"Not verified.",when:"Not verified.",merit:"Not verified.",close:"Not published.",note:"Also lists a Master’s in Data Science, so you can continue there.",p:"BS Artificial Intelligence and a combined Data Science and AI degree (listed by a ranking site; confirm with SZABIST)."},
+{n:"Iqra University Karachi",c:"Karachi",t:"Private",tier:2,lo:null,hi:null,need:[],conf:"Reported",
+ fee:"Fee not verified. Check iqra.edu.pk.",test:"Not verified.",when:"Not verified.",merit:"Not verified.",close:"Not published.",note:"A broader, easier-entry fallback in Karachi.",p:"BS Artificial Intelligence, BS Computer Science, BS Software Engineering, BS Business Informatics (reported)."}
+];
+const DSP={"FAST-NUCES Karachi":"BS Data Science, BS Artificial Intelligence, BS Cyber Security and BS Business Analytics.","GIKI":"AI, Data Science, Computer Science, Cyber Security and Software Engineering (per its eligibility page).","IBA Karachi":"No separate data science degree found. The BS Computer Science has AI and data science electives and careers (IBA brochure)."};
+const ENG=[
+{n:"NED University (engineering)",c:"Karachi",t:"Public",tier:3,lo:30,hi:81,need:["Mathematics","Physics"],conf:"Official merit formula, reported fees",
+ fee:"Sources differ widely: about PKR 20,000–81,000 per semester, plus a one-time admission fee (PKR 43,000 in one source). Check neduet.edu.pk.",
+ test:"NED Pre-Admission Entry Test: 100 MCQs in about 2 hours. You must score at least 50% to qualify (reported). SAT can substitute for some applicants.",
+ when:"2025 cycle (reported): test phases in mid-June and mid-July, merit list around 19 July, classes from mid-August. Applicants can retake to improve their score.",
+ merit:"Official regulation: 40% qualifying marks + 60% NED entry test.",close:"Varies a lot by discipline. Not verified here; check NED’s published merit lists.",
+ note:"Civil, Mechanical, Electrical, Chemical, Computer Systems and more. Best value in Karachi, and admission is purely on merit."},
+{n:"FAST-NUCES Karachi (Electrical, Computer Eng.)",c:"Karachi",t:"Private",tier:4,lo:160,hi:220,need:["Mathematics","Physics"],conf:"Reported",
+ fee:"About PKR 1.6–2.2 lakh per semester, plus a one-time PKR 30,000 admission fee.",test:"NU Test (computer-based). SAT also accepted.",when:"Last cycle: apply and test in June–July, classes from mid-August.",
+ merit:"10% matric/O Level + 40% intermediate/A Level + 50% entry test.",close:"Engineering closing merit not verified (BS CS closed near 70% at Karachi).",note:"Offers BS Electrical Engineering and BS Computer Engineering at the Karachi campus."},
+{n:"NUST (Islamabad)",c:"Islamabad",t:"Public",tier:5,lo:150,hi:300,need:["Mathematics","Physics"],conf:"Reported",
+ fee:"Roughly PKR 1.5–3 lakh per semester (sources differ), plus hostel.",test:"NUST Entry Test (NET). SAT/ACT accepted for limited seats.",when:"Last cycle’s applications closed in late June.",
+ merit:"Reported: 50% NET + 40% intermediate + 10% matric.",close:"Varies by school and discipline. Not verified.",note:"Top-ranked for engineering. Very competitive, and you’d live in Islamabad."},
+{n:"GIKI",c:"Swabi",t:"Private",tier:5,lo:300,hi:400,need:["Mathematics","Physics"],conf:"Official eligibility, reported fee",
+ fee:"About PKR 3–4 lakh per semester (reported).",test:"Own entry test. Confirm on giki.edu.pk.",when:"Check the GIKI admissions page.",
+ merit:"A Level in Maths, Physics and Chemistry or Computer Science, with D or above in Maths and Physics. Needs 8 O Level subjects.",close:"Not published in sources I found.",note:"Residential campus. Physics and Maths are mandatory."},
+{n:"NUTECH University (BS Engineering Technology)",c:"Islamabad",t:"Public",tier:2,lo:null,hi:null,need:["Mathematics","Physics"],conf:"Official eligibility",
+ fee:"Fee not verified. Check nutech.edu.pk.",test:"NUTECH Entry Test (NUET), at least 50%, or SAT Subject Test.",when:"Check the admissions page.",
+ merit:"60% in O Level, 60% in A Level or HSSC (50% for its computer science program), and 50% in the test. IBCC equivalence needed.",close:"Not published.",note:"This is an engineering technology degree. Check how it’s treated for engineering registration before choosing."}
+];
+const BZ=[
+{n:"IBA Karachi (BBA)",c:"Karachi",t:"Private",tier:4,lo:286,hi:286,need:[],conf:"Official eligibility, reported fee",
+ fee:"About PKR 2.86 lakh per semester (one education site), excluding one-time charges. IBA offers need-based aid and an interest-free loan scheme (its brochure).",test:"IBA Aptitude Test and an interview. A strong SAT/ACT score can exempt you from the test.",when:"IBA admits for both Spring and Fall; check the admissions page on iba.edu.pk for dates.",
+ merit:"Aptitude test, interview and A Level grades (BBA rule: at least two Bs and one C in three principal subjects). IBCC equivalence required.",close:"Cut-off not published in sources I found.",note:"4-year, 132-credit program. IBA’s BS in Accounting and Finance is ICAP-recognised and earns exemptions toward ACCA, CIMA and CFA."},
+{n:"SZABIST Karachi (BBA)",c:"Karachi",t:"Private",tier:2,lo:129,hi:129,need:[],conf:"Reported",
+ fee:"About PKR 1.29 lakh tuition per semester (reported).",test:"Not verified.",when:"Not verified.",
+ merit:"Reported: O Level in 8 subjects including Maths, Urdu, English, Pakistan Studies and Islamiyat, three A Level subjects, IBCC equivalence.",close:"Not published.",note:"A more affordable private business school in Karachi."},
+{n:"FAST-NUCES Karachi (Finance, Analytics)",c:"Karachi",t:"Private",tier:3,lo:160,hi:220,need:[],conf:"Reported",
+ fee:"About PKR 1.6–2.2 lakh per semester.",test:"NU Test.",when:"Last cycle: apply and test in June–July.",
+ merit:"10% matric + 40% intermediate + 50% entry test.",close:"Not verified for these programs.",note:"Offers BS Finance and Accounting, Finance and Technology, and Business Analytics. Good if you like numbers and computing together."},
+{n:"LUMS (business programs)",c:"Lahore",t:"Private",tier:5,lo:900,hi:1000,need:[],conf:"Official dates, reported fee",
+ fee:"LUMS’s own first-year figure for BS CS is about PKR 20 lakh; business programs are likely similar. Confirm.",test:"LCAT, or SAT/ACT.",when:"Last cycle: apply by 27 Jan, LCAT around 15 Feb, financial aid forms by 28 Feb.",
+ merit:"Holistic: test, grades, teacher evaluation.",close:"Not published.",note:"Confirm the exact business programs on lums.edu.pk. Generous aid is reported."}
+];
+const AH=[
+{n:"Pharm-D (Doctor of Pharmacy)",yrs:"5 years",lo:133,hi:200,
+ what:"Medicines, how they work and safe patient use. Careers in hospital and clinical pharmacy, the pharma industry, regulation and research.",
+ elig:"FSc or A Level pre-medical with at least 60%. Public colleges need Sindh domicile and PRC.",
+ test:"University entry test. JSMU and DUHS run their own (DUHS needs at least 25% in its test, reported). Some other pharmacy schools use NAT-I.",
+ fee:"JSMU (official): PKR 30,000 admission plus about PKR 1.33 lakh tuition per year on open merit; self-finance about PKR 3 lakh per year. DUHS (reported): PKR 50,000 admission plus about PKR 2 lakh per year.",
+ seats:"JSMU: 70 open-merit seats (49 Karachi, 21 interior Sindh) plus 30 self-finance.",when:"JSMU admits every year in November–December (official)."},
+{n:"DPT (Doctor of Physical Therapy)",yrs:"5 years",lo:125,hi:180,
+ what:"Physiotherapy: rehabilitation after injury, surgery and illness, sports and chronic pain. Careers in hospitals, clinics and sports.",
+ elig:"FSc or A Level pre-medical. The minimum percentage is reported between 50% and 60%, so check each university.",
+ test:"University entry test.",
+ fee:"JSMU (official): PKR 25,000 admission plus about PKR 1.25 lakh per year on open merit; self-finance about PKR 2.2 lakh per year. DUHS (reported): PKR 50,000 admission plus about PKR 1.8 lakh per year.",
+ seats:"JSMU: 90 open-merit seats plus 10 self-finance.",when:"JSMU admits every year in November–December (official)."},
+{n:"BS Nursing (BSN)",yrs:"4 years",lo:null,hi:null,
+ what:"Hospital and community nursing, midwifery and nursing leadership. A degree-level nursing qualification, not a diploma.",
+ elig:"FSc or A Level pre-medical with at least 50%. JSMU also reports an age range of 18–35.",
+ test:"University entry test. Ziauddin University (private) runs its own and needs an IBCC certificate for A Level candidates.",
+ fee:"Fee not verified. Check JSMU, DUHS and Ziauddin.",
+ seats:"Seats not verified.",when:"Ziauddin’s 2026 round (reported): apply by 11 September, test on 19 September. JSMU: Nov–Dec."},
+{n:"Other BS health degrees",yrs:"4 years",lo:null,hi:null,
+ what:"BS Medical Technology (lab), BS Public Health, BS Respiratory and Critical Care Technology, BS Dental Technology, BS Nutrition and Food Sciences, and BS Biotechnology. Careers in labs, hospitals, public health and research.",
+ elig:"Usually FSc or A Level pre-medical (some accept other science combinations). Public programs need Sindh domicile and PRC (reported).",
+ test:"University entry test. Dates are announced on each university’s admission page.",
+ fee:"Fees not verified. Check DUHS and JSMU prospectuses.",
+ seats:"Seats not verified.",when:"Usually November–December at the public health universities."}
+];
+const fmt=n=>n>=100?(n/100).toFixed(n%100?1:0)+" lakh":n+"k";
+const fitLabel=(u,g)=>u.tier<=g?["Likely","tag"]:u.tier===g+1?["Competitive","tag warn"]:["Reach","tag bad"];
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,Math.round(v)));
+const det=(h,tags,sub,body)=>`<details class="u"><summary><div class="sc"><h3>${h}</h3>${tags?`<div class="row">${tags}</div>`:""}${sub?`<p class="mute" style="margin-top:6px">${sub}</p>`:""}</div></summary><div class="body">${body}</div></details>`;
+const fld=(l,t)=>`<div class="f"><span>${l}</span>${t}</div>`;
+const rule=(ga,nb)=>ga.length>=3&&ga.filter(p=>p>=75).length>=nb&&ga.every(p=>p>=65);
+const DN={sw:"software engineer",ds:"data science and AI",eng:"engineer",md:"doctor",ah:"allied health professional",biz:"business and finance"};
+
+$("og").innerHTML=OSUB.map(s=>`<label class="gr"><span>${s}</span><select data-s="${s}"><option value="">–</option>${GR.map(g=>`<option>${g}</option>`).join("")}</select></label>`).join("");
+$("og").onchange=e=>{S.og[e.target.dataset.s]=e.target.value};
+function renderAG(){$("ag").innerHTML=[...S.as].map(s=>`<label class="gr"><span>${s}: ${S.level==="O"?"target":"expected"} grade</span><select data-s="${s}">${GR.map(g=>`<option ${(S.ag[s]||"B")===g?"selected":""}>${g}</option>`).join("")}</select></label>`).join("")}
+$("ag").onchange=e=>{S.ag[e.target.dataset.s]=e.target.value};
+$("als").innerHTML=AS.map(x=>`<button class="chip" aria-pressed="${S.as.has(x)}">${x}</button>`).join("");
+$("als").onclick=e=>{const b=e.target.closest(".chip");if(!b)return;const v=b.textContent;S.as.has(v)?S.as.delete(v):S.as.add(v);b.setAttribute("aria-pressed",S.as.has(v));renderAG()};
+$("intr").innerHTML=INT.map(x=>`<button class="chip" data-v="${x[0]}" aria-pressed="false">${x[1]}</button>`).join("");
+$("intr").onclick=e=>{const b=e.target.closest(".chip");if(!b)return;const v=b.dataset.v;S.int.has(v)?S.int.delete(v):S.int.add(v);b.setAttribute("aria-pressed",S.int.has(v))};
+renderAG();
+const sync=()=>{$("bun").hidden=S.goal!=="un";if(S.st0!==S.stage){S.st0=S.stage;setYrs()}};
+document.querySelectorAll("[data-k]").forEach(g=>g.onclick=e=>{const b=e.target.closest(".chip");if(!b)return;S[g.dataset.k]=b.dataset.v;g.querySelectorAll(".chip").forEach(c=>c.setAttribute("aria-pressed",c===b));sync()});
+
+function eq(){
+ const yo=+$("yo").value,ya=+$("ya").value;
+ const op=x=>S.og[x]?pt(S.og[x],x,"O",yo):null;
+ // IBCC counts exactly 8 O Level subjects: English, Urdu, Islamiyat, Pakistan Studies, Mathematics, Physics, Chemistry, and Biology or Computer Science
+ const o=["English","Mathematics","Urdu","Islamiyat","Pakistan Studies","Physics","Chemistry"].map(op).filter(v=>v!==null);
+ const bc=["Biology","Computer Science"].map(op).filter(v=>v!==null);
+ if(bc.length)o.push(Math.max(...bc));
+ const m=o.length?o.reduce((a,b)=>a+b,0)/o.length:0;
+ const pts=apts;
+ const PRI={md:["Biology","Chemistry","Physics","Mathematics"],ah:["Biology","Chemistry","Physics"],sw:["Mathematics","Physics","Computer Science","Chemistry","Further Maths"],ds:["Mathematics","Computer Science","Further Maths","Economics","Physics"],eng:["Mathematics","Physics","Chemistry","Computer Science"],biz:["Mathematics","Economics","Business","Further Maths"]}[S.goal];
+ let chosen;
+ if(PRI)chosen=[...PRI.filter(x=>S.as.has(x)),...[...S.as].filter(x=>!PRI.includes(x))].slice(0,3);
+ else chosen=[...S.as].sort((x,y)=>pts(y)-pts(x)).slice(0,3);
+ const a=chosen.map(pts);
+ const aAvg=a.length?a.reduce((x,y)=>x+y,0)/a.length:0;
+ // IBCC A Level equivalence = (8 O Level subjects + 3 A Level subjects) / 11 subjects
+ return{m,f:a.length?(m*8+aAvg*3)/11:0,chosen,ga:a,n:o.length,yo,ya,star:Object.values(S.og).includes("A*")||chosen.some(x=>(S.ag[x]||"B")==="A*")};
+}
+function head(E,title){
+ const dom=S.dom==="Other"?(S.dn||"Another province"):S.dom==="Karachi"?"Karachi":"Other Sindh";
+ return `<button class="back" id="bk">‹ Change answers</button><h1 style="margin-top:6px">${title}</h1>
+ <div class="sum"><span>${({AS:"AS year",A2:"A2 year",O1:"O Level, early",O2:"O Level, final year"})[S.stage]}</span><span>${dom}</span><span>${S.as.size} A Level subjects</span></div>
+ <h2>Your IBCC equivalent marks</h2>
+ <div class="card"><p>O Level ≈ <b>${E.m.toFixed(1)}%</b> (matric equivalent). With your expected grades in ${E.chosen.join(", ")}, A Level ≈ <b>${E.f.toFixed(1)}%</b> (FSc equivalent).</p>
+ <p class="mute" style="margin-top:8px">IBCC points: A=85, B=75, C=65, D=55, E=45. A* is set per subject for each session (see below). This is an estimate. Your official IBCC certificate decides.${E.n<8?` You entered ${E.n} of the 8 O Level subjects IBCC counts, so treat this as rough.`:""}</p></div>${sesCard(E)}${S.level==="O"?oPlan(E):""}`;
+}
+function base(){
+ const miss=["English","Mathematics","Urdu","Islamiyat","Pakistan Studies","Physics","Chemistry"].filter(x=>!S.og[x]);
+ if(!S.og.Biology&&!S.og["Computer Science"])miss.push("Biology or Computer Science");
+ return [miss.length?["w",`No grade entered for ${miss.join(", ")}. IBCC equivalence counts eight O Level subjects, and every university asks for the certificate.`]:["ok","You have all eight O Level subjects IBCC counts. Apply for your IBCC equivalence certificate early; it takes time."]];
+}
+const ckHtml=ck=>ck.map(c=>`<div class="ck ${c[0]==="w"?"w":""}"><b>${c[0]==="w"?"!":"✓"}</b><span>${c[1]}</span></div>`).join("");
+const yrOf=()=>+$("ya").value||({AS:2028,A2:2027,O1:2030,O2:2029})[S.stage];
+function finish(){
+ $("s1").hidden=true;$("s2").hidden=false;scrollTo(0,0);
+ $("bk").onclick=()=>{$("s2").hidden=true;$("s1").hidden=false;scrollTo(0,0)};
+ $("s2").querySelectorAll("[data-jump]").forEach(b=>b.onclick=()=>{S.goal=b.dataset.jump;run()});
+}
+const PLAN={
+ sw:`<p><b>Missed your first choice?</b> Apply to several tiers at once: one reach, two competitive, one safe (for example FAST or IBA, then NED, then DHA Suffa).</p><p style="margin-top:10px"><b>Can’t afford fees?</b> Public options (NED, COMSATS, NUST) cost far less, and Virtual University lets you earn while you study.</p><p style="margin-top:10px"><b>Don’t want a degree first?</b> A skills-first route (learn programming, build projects, freelance) is possible, but it needs strong self-discipline and a portfolio.</p>`,
+ ds:`<p><b>No dedicated data science seat?</b> BS Computer Science covers the same maths and programming. Specialise with electives, projects and online courses.</p><p style="margin-top:10px"><b>Want a stronger maths base?</b> IBA also offers a BS in Mathematics, a solid foundation for data work.</p><p style="margin-top:10px"><b>Budget tight?</b> Start with a public CS degree such as NED and build a data portfolio on the side.</p>`,
+ eng:`<p><b>Missed NED or NUST?</b> Retake the entry test to improve your score, and apply to a private option such as FAST in the same cycle.</p><p style="margin-top:10px"><b>Another way in:</b> A DAE diploma can lead to a BTech or engineering degree later through reserved quotas at some universities.</p><p style="margin-top:10px"><b>Check before you commit:</b> Make sure the degree is recognised by the Pakistan Engineering Council if you want to practise as a registered engineer.</p>`,
+ biz:`<p><b>Professional route:</b> You can study ACCA or CA (ICAP) instead of, or alongside, a degree. Check ICAP and ACCA Pakistan for current fees and exemptions.</p><p style="margin-top:10px"><b>Missed IBA?</b> Apply to SZABIST, FAST’s finance programs and others in the same cycle.</p><p style="margin-top:10px"><b>Want a head start?</b> IBA’s Accounting and Finance degree is ICAP-recognised and earns exemptions toward ACCA, CIMA and CFA.</p>`
+};
+const CFG={sw:{list:()=>U,calc:"cs",tit:"Universities for BS Computer Science"},
+ ds:{list:()=>[...U.filter(u=>DSP[u.n]),...DSX],calc:"cs",tit:"Universities for data science and AI"},
+ eng:{list:()=>ENG,calc:"eng",tit:"Universities for engineering"},
+ biz:{list:()=>BZ,calc:null,tit:"Universities for business and finance"}};
+function uniGoal(E){
+ const g=S.goal,as=S.as,b=+S.b,m=E.m,f=E.f,cap=f>=85?4:f>=72?3:2,dom=S.dom,cfg=CFG[g];
+ const ck=base(),needM=!as.has("Mathematics");
+ if(g==="eng"){
+  const miss=["Mathematics","Physics"].filter(x=>!as.has(x));
+  ck.push(miss.length?["w",`Engineering needs Maths and Physics at A Level. Yours is missing ${miss.join(" and ")}.`]:["ok",as.has("Chemistry")||as.has("Computer Science")?"Maths, Physics and Chemistry or Computer Science covers almost every engineering program.":"Maths and Physics are in place. A third subject of Chemistry or Computer Science is usually expected."]);
+ }else if(g==="biz"){
+  ck.push(rule(E.ga,2)?["ok","Your expected grades meet IBA’s BBA rule (at least two Bs and one C in three principal subjects)."]:["w","Your expected grades don’t yet meet IBA’s BBA rule (at least two Bs and one C in three principal subjects). Aim to lift at least two subjects to B."]);
+  ck.push(["ok","Most business programs don’t demand specific A Level subjects, but Maths, Economics or Business help."]);
+ }else{
+  ck.push(needM?["w",g==="ds"?"Maths isn’t in your A Level subjects. It’s the foundation of data science and almost every computing degree.":"Maths isn’t in your A Level subjects. BS Computer Science almost everywhere needs it, so this closes most doors."]:["ok",as.has("Physics")?"Maths and Physics keep nearly every university open.":"Maths is covered. Adding Physics would open more doors (GIKI needs it)."]);
+  if(g==="sw")ck.push(rule(E.ga,1)?["ok","Your expected grades meet IBA’s BS CS rule (one B and two Cs, including Maths)."]:["w","Your expected grades don’t yet meet IBA Karachi’s BS CS rule (at least one B and two Cs, including Maths)."]);
+ }
+ const list=cfg.list().map(u=>{const ok=u.need.every(x=>as.has(x)),fit=fitLabel(u,cap),inb=u.lo===null?null:u.lo*2<=b;
+  return{u,ok,fit,inb,s:(ok?0:-100)+(inb===false?-20:0)+(u.tier<=cap?10:u.tier===cap+1?6:0)-Math.abs(u.tier-cap)+(dom==="Karachi"&&u.c==="Karachi"?4:0)}}).sort((a,b)=>b.s-a.s);
+ const fastNeed=()=>{const n=(70-.1*m-.4*f)/.5;return n<=0?"Your marks alone already reach about 70% (last BS CS closing merit).":n>100?"Out of reach on your current marks (against about 70%).":`About ${Math.ceil(n)}/100 in the FAST test to reach roughly 70%, last cycle’s BS CS closing merit.`};
+ const yr=yrOf();
+ $("s2").innerHTML=head(E,`Your route to ${DN[g]}`)+`
+ <h2>What to sort out</h2>
+ <div class="card"><div class="ck"><b>→</b><span>Your final A Level exams are around May–June ${yr}. Most universities let you apply while awaiting results, and the main entry-test season is June–July (LUMS and IBA run earlier).</span></div>${ckHtml(ck)}</div>
+ <h2>${cfg.tit}</h2>
+ <p class="mute" style="margin-top:6px">Sorted by fit for your equivalent marks, budget and subjects.</p>
+ ${list.map(({u,ok,fit,inb})=>det(u.n,
+  `<span class="tag">${u.c}</span><span class="tag">${u.t}</span><span class="${fit[1]}">${fit[0]}</span>${inb===null?'<span class="tag warn">Fee unverified</span>':inb?'<span class="tag">In budget</span>':'<span class="tag bad">Over budget</span>'}${ok?"":'<span class="tag bad">Needs '+u.need.filter(x=>!as.has(x)).join(", ")+' at A Level</span>'}`,
+  u.lo===null?"Fee: check the university":"About PKR "+fmt(u.lo)+(u.hi>u.lo?"–"+fmt(u.hi):"")+" per semester",
+  (u.n==="FAST-NUCES Karachi"&&g!=="eng"&&g!=="biz"?fld("Your numbers",fastNeed()):"")
+  +((g==="ds"&&(u.p||DSP[u.n]))?fld("Programs for this goal",u.p||DSP[u.n]):"")
+  +fld("Fees",u.fee)+fld("Entry test",u.test)+fld("Test and deadline timing (last cycle)",u.when)+fld("Merit formula",u.merit)+fld("Last closing merit",u.close)+fld("Good to know",u.note)
+  +`<p class="src">Data confidence: ${u.conf}. Data year: ${dyr(u.n)}. Dates are from the last cycle and shift slightly each year. ${offLink(u.n)}</p>`)).join("")}
+ ${cfg.calc?`<h2>Estimate your merit</h2>
+ <div class="card calc"><p class="mute">Starts from your equivalent marks. Drag to test other results.</p>
+ <label>O Level (matric equivalent) <b id="v1"></b></label><input type="range" id="r1" min="40" max="100" value="${clamp(m,40,100)}">
+ <label>A Level (FSc equivalent) <b id="v2"></b></label><input type="range" id="r2" min="40" max="100" value="${clamp(f,40,100)}">
+ <label>Entry test score <b id="v3"></b></label><input type="range" id="r3" min="0" max="100" value="70">
+ <div class="res" id="cr"></div></div>`:""}
+ ${MORE[g]?moreHtml(g):""}<h2>If this route doesn’t work</h2><div class="card">${PLAN[g]}</div>`;
+ finish();
+ if(cfg.calc){
+  const calc=()=>{const a=+$("r1").value,i=+$("r2").value,t=+$("r3").value;["v1","v2","v3"].forEach((v,k)=>$(v).textContent=[a,i,t][k]);
+   const n=.4*i+.6*t;
+   $("cr").innerHTML=cfg.calc==="cs"
+   ?`FAST: <strong>${(.1*a+.4*i+.5*t).toFixed(1)}%</strong> <span class="mute">(Karachi CS closed near 70%)</span><br>NED: <strong>${n.toFixed(1)}%</strong> <span class="mute">(40% qualifying marks + 60% test; closing merit not verified)</span><br>IBA: decided by aptitude test and interview, not marks.`
+   :`NED: <strong>${n.toFixed(1)}%</strong> <span class="mute">(40% qualifying marks + 60% entry test; closing merit varies by discipline)</span><br>NUST: <strong>${(.1*a+.4*i+.5*t).toFixed(1)}%</strong> <span class="mute">(reported formula)</span><br>FAST: <strong>${(.1*a+.4*i+.5*t).toFixed(1)}%</strong> <span class="mute">(same 10/40/50 formula)</span>`};
+  ["r1","r2","r3"].forEach(r=>$(r).oninput=calc);calc();
+ }
+}
+function doctor(E){
+ const as=S.as,b=+S.b,m=E.m,f=E.f,dom=S.dom;
+ const ck=base();
+ const miss=["Biology","Chemistry","Physics"].filter(x=>!as.has(x));
+ ck.push(miss.length?["w",`Your A Level plan is missing ${miss.join(", ")}. MBBS needs all three for pre-medical equivalence.`]:["ok","Biology, Chemistry and Physics is the right A Level set."]);
+ ck.push(f>=65?["ok",`Your estimated A Level equivalent is ${f.toFixed(1)}%, above the 65% minimum PMDC requires to sit MDCAT.`]:["w",`Your estimated A Level equivalent is ${f.toFixed(1)}%, below the 65% PMDC requires to sit MDCAT. Raise your expected grades or talk to your school about improving them.`]);
+ ck.push(m>=80?["ok","Your O Level equivalent clears the 80% that some 2026 sources report for 9th and 10th."]:["w",`Your O Level equivalent is ${m.toFixed(1)}%. Some 2026 sources report PMDC needs 80% or more in both 9th and 10th. Check this on the official PMDC notice, because it could block you.`]);
+ if(!S.og.Biology)ck.push(["w","No Biology grade at O Level. A pre-medical route is much harder without it."]);
+ if(dom==="Other")ck.push(["w","Your domicile province decides where you sit MDCAT and which seats you compete for. This prototype lists Sindh colleges only; your province isn’t added yet."]);
+ else ck.push(["ok",dom==="Karachi"?"Karachi domicile competes for the Karachi block of seats at Sindh’s public colleges. Keep your domicile certificate, CNIC or B-Form ready.":"Interior Sindh domicile competes for a separate, smaller quota. Keep your domicile certificate, CNIC or B-Form ready."]);
+ const yr=yrOf(),need=c=>((c-.1*m-.4*f)/.5)*1.8;
+ const list=C.map(c=>{const inb=c.lo===null?null:c.lo<=b;return{c,inb,s:(inb===true?3:inb===null?1:-3)+(c.close?c.close/20:0)}}).sort((a,b)=>b.s-a.s);
+ const feas=n=>n<=99?["Within reach","tag"]:n<=150?["Competitive","tag warn"]:n<=180?["Very hard","tag bad"]:["Out of reach","tag bad"];
+ $("s2").innerHTML=head(E,"Your route to doctor")+`
+ <h2>What to sort out</h2>
+ <div class="card"><div class="ck"><b>→</b><span>Your final A Level exams are around May–June ${yr}. MDCAT is then held in the second half of ${yr} (2026’s was moved to 20 September), in your domicile province.</span></div>${ckHtml(ck)}</div>
+ <h2>How MBBS admission works</h2>
+ <div class="card"><p><b>MDCAT:</b> one national paper-based test of 180 MCQs in 3 hours, covering Biology, Chemistry, Physics, English and Logical Reasoning, with no negative marking. You need at least 99/180 (55%) for MBBS and 90/180 (50%) for BDS.</p>
+ <p style="margin-top:10px"><b>Merit:</b> 10% matric/O Level + 40% FSc/A Level + 50% MDCAT. Passing doesn’t get you a seat; your rank does.</p>
+ <p style="margin-top:10px"><b>Attempts:</b> 2026 sources say there’s no age limit and no limit on attempts.</p></div>
+ <h2>Sindh medical colleges</h2>
+ <p class="mute" style="margin-top:6px">Each card shows the MDCAT marks you’d need to match last reported closing merit with your numbers.</p>
+ ${list.map(({c,inb})=>{const n=c.close?need(c.close):null,fl=n===null?null:feas(n);
+  return det(c.n,`<span class="tag">${c.t}</span>${c.close?`<span class="tag warn">Closed ~${c.close}%</span>`:'<span class="tag warn">Merit unverified</span>'}${fl?`<span class="${fl[1]}">${fl[0]}</span>`:""}${inb===null?'<span class="tag warn">Fee unverified</span>':inb?'<span class="tag">In budget</span>':'<span class="tag bad">Over budget</span>'}`,
+  c.lo===null?"Fee: check the college":"About PKR "+fmt(c.lo)+(c.hi>c.lo?"–"+fmt(c.hi):"")+" per year",
+  (n===null?"":fld("Your numbers",n>180?"Even a perfect MDCAT wouldn’t reach last year’s closing merit with these marks.":n<=0?"Your school marks alone already reach it.":`You’d need about ${Math.ceil(n)}/180 in MDCAT to match last reported closing merit.`))
+  +fld("Seats",c.seats)+fld("Tuition",c.fee)+fld("Last closing merit",c.cl)+fld("Good to know",c.note)+`<p class="src">Data confidence: ${c.conf}. Data year: ${dyr(c.n)}. Merit shifts every year. ${offLink(c.n)}</p>`)}).join("")}
+ ${moreHtml("md")}<h2>Estimate your aggregate</h2>
+ <div class="card calc"><p class="mute">Starts from your equivalent marks. Drag to test other results.</p>
+ <label>O Level (matric equivalent) <b id="v1"></b></label><input type="range" id="r1" min="40" max="100" value="${clamp(m,40,100)}">
+ <label>A Level (FSc equivalent) <b id="v2"></b></label><input type="range" id="r2" min="40" max="100" value="${clamp(f,40,100)}">
+ <label>MDCAT marks out of 180 <b id="v3"></b></label><input type="range" id="r3" min="0" max="180" value="150">
+ <div class="res" id="cr"></div></div>
+ <h2>If you don’t get a seat</h2>
+ ${det("Re-sit MDCAT","","","<p style='margin-top:12px'>2026 sources say there’s no attempt limit. Many students retake once to lift the 50% MDCAT part of merit. Keep applying to private colleges meanwhile.</p>")}
+ ${det("Apply to private colleges too","","","<p style='margin-top:12px'>Private colleges use the same MDCAT and aggregate, so one result opens both lists. They cost far more (about PKR 9.5–17 lakh per year in the figures above), so check fees and financial aid early.</p>")}
+ ${det("BDS (dental surgery)","","","<p style='margin-top:12px'>Same MDCAT, a lower pass mark (50% instead of 55%), and a separate merit list. At JSMU (official), open-merit BDS tuition is PKR 1.5 lakh per year plus a PKR 22,000 admission fee, with 43 open-merit seats. Admissions there run every November–December.</p>")}
+ ${det("Allied health degrees","","","<p style='margin-top:12px'>Pharm-D, DPT, BS Nursing and other health degrees use the same A Level results, apply on a different timeline, and cost far less than a private MBBS. See programs, fees, entry tests and seats.</p><button class='lnk' data-jump='ah'>See allied health options</button>")}
+ ${det("Study medicine abroad","","","<p style='margin-top:12px'>PMDC’s August 2026 notice says students going abroad for medicine need at least 50% in MDCAT or an equivalent foreign admission test. Check the degree’s recognition in Pakistan before paying anything.</p>")}`;
+ finish();
+ const calc=()=>{const a=+$("r1").value,i=+$("r2").value,t=+$("r3").value;["v1","v2","v3"].forEach((v,k)=>$(v).textContent=[a,i,t][k]);
+  const ag=.1*a+.4*i+.5*(t/180*100);
+  const rows=C.filter(c=>c.close).map(c=>{const d=ag-c.close;return `<li>${c.n}: ${d>=2?"above last closing merit":d>=-2?"borderline":"below last closing merit"} (${c.close}%)</li>`}).join("");
+  $("cr").innerHTML=`Aggregate: <strong>${ag.toFixed(1)}%</strong><br>${t>=99?"MDCAT clears the MBBS pass mark.":"MDCAT is below the 99/180 MBBS pass mark."} ${i>=65?"":"Your A Level result is below the 65% minimum."}<ul>${rows}</ul><span class="mute">Closing merits are last cycle’s reported figures, not predictions. For context, in the 2025 UHS-run MDCAT (47,772 candidates), about 817 scored 170–180 and about 5,955 scored 160–169.</span>`};
+ ["r1","r2","r3"].forEach(r=>$(r).oninput=calc);calc();
+}
+function allied(E){
+ const as=S.as,b=+S.b,f=E.f,dom=S.dom,ck=base();
+ const miss=["Biology","Chemistry"].filter(x=>!as.has(x));
+ ck.push(miss.length?["w",`Your A Level plan is missing ${miss.join(" and ")}. Most allied health degrees need pre-medical subjects (Biology and Chemistry, usually with Physics).`]:["ok","Biology and Chemistry at A Level meet the pre-medical requirement for these programs."]);
+ ck.push(f>=60?["ok",`Your estimated A Level equivalent is ${f.toFixed(1)}%, enough for Pharm-D (60%) and the 50% programs.`]:f>=50?["w",`Your estimated A Level equivalent is ${f.toFixed(1)}%. That meets the 50% programs (nursing and some others) but is below Pharm-D’s 60%.`]:["w",`Your estimated A Level equivalent is ${f.toFixed(1)}%, below the 50% most programs ask for. Raising your expected grades matters more than anything else here.`]);
+ ck.push(dom==="Other"?["w","Public programs at Sindh’s health universities need Sindh domicile and PRC. With another province’s domicile, look at private options or your home province’s universities."]:["ok","Your Sindh domicile lets you apply to the public programs at JSMU and DUHS, which cost far less than private ones."]);
+ const yr=yrOf();
+ $("s2").innerHTML=head(E,"Your route to allied health")+`
+ <h2>What to sort out</h2>
+ <div class="card"><div class="ck"><b>→</b><span>Your final A Level exams are around May–June ${yr}. Sindh’s public health universities usually run admissions in November–December, after A Level results, with their own entry tests.</span></div>${ckHtml(ck)}</div>
+ <h2>Programs you can choose from</h2>
+ <p class="mute" style="margin-top:6px">Allied health means the clinical and technical health careers beyond MBBS. They don’t use MDCAT, and many start earning sooner.</p>
+ ${AH.map(p=>{const inb=p.lo===null?null:p.lo<=b;
+  return det(p.n,`<span class="tag">${p.yrs}</span>${inb===null?'<span class="tag warn">Fee unverified</span>':inb?'<span class="tag">In budget</span>':'<span class="tag bad">Over budget</span>'}`,
+  p.lo===null?"Fee: check the university":"About PKR "+fmt(p.lo)+"–"+fmt(p.hi)+" per year",
+  fld("What it is",p.what)+fld("Eligibility",p.elig)+fld("Entry test",p.test)+fld("Fees",p.fee)+fld("Seats",p.seats)+fld("Timing",p.when)+`<p class="src">Official figures are from JSMU’s admission pages; DUHS and Ziauddin details are reported by education sites. Confirm on each university’s page.</p>`)}).join("")}
+ <h2>How merit works</h2>
+ <div class="card"><p>JSMU reports final merit as your intermediate or A Level marks plus your entry test score, with the entry test counting for 60%. Closing merits for these programs weren’t found, so apply to more than one.</p>
+ <p style="margin-top:10px"><b>Doubling up with MBBS:</b> the same A Level results and subjects work for both. If MDCAT doesn’t go your way, these programs are a real plan B, not a downgrade.</p>
+ <button class="lnk" data-jump="md">See the doctor route</button></div>
+ <h2>If you don’t get a seat</h2>
+ <div class="card"><p>Apply to JSMU and DUHS (public) and a private university such as Ziauddin in the same season. Retake the entry test next cycle if needed, and keep your IBCC certificate and domicile documents ready.</p></div>`;
+ finish();
+}
+const WS={sw:{Mathematics:2,"Computer Science":2,Physics:1},ds:{Mathematics:2,"Computer Science":1.5,Economics:1,Physics:.5},eng:{Mathematics:2,Physics:2,Chemistry:1,"Computer Science":.5},md:{Biology:2,Chemistry:2,Physics:1},ah:{Biology:2,Chemistry:2,Physics:.5,Psychology:.5},biz:{Economics:2,Business:2,Mathematics:1}};
+const WI={sw:{tech:3,math:1},ds:{math:3,tech:2,biz:1},eng:{build:3,math:2},md:{bio:3,help:2},ah:{bio:2,help:3},biz:{biz:3,math:1}};
+const REQ={sw:["Mathematics"],ds:["Mathematics"],eng:["Mathematics","Physics"],md:["Biology","Chemistry","Physics"],ah:["Biology","Chemistry"],biz:[]};
+const IL=Object.fromEntries(INT);
+function unsure(E){
+ const as=[...S.as],pts=apts;
+ const sc=Object.keys(WS).map(g=>{
+  const subs=as.filter(s=>WS[g][s]).sort((x,y)=>WS[g][y]*pts(y)-WS[g][x]*pts(x));
+  let s=subs.reduce((t,x)=>t+WS[g][x]*pts(x)/75,0);
+  const ints=[...S.int].filter(i=>WI[g][i]);ints.forEach(i=>s+=WI[g][i]);
+  const gap=REQ[g].filter(x=>!S.as.has(x));
+  return{g,s:s-gap.length*1.5,subs,ints,gap};
+ }).sort((a,b)=>b.s-a.s);
+ const card=(r,i)=>{const bits=[];
+  if(r.subs.length)bits.push(`your ${r.subs.slice(0,3).join(", ")} ${r.subs.length>1?"are":"is"} a strong base`);
+  if(r.ints.length)bits.push(`you enjoy ${r.ints.map(x=>IL[x].toLowerCase()).join(" and ")}`);
+  return det(`${i+1}. ${DN[r.g].replace(/^./,c=>c.toUpperCase())}`,i===0?'<span class="tag">Best match</span>':"",null,
+  `<p class="why">${bits.length?"Why it fits: "+bits.join(", and ")+".":"Pick some interests above or add A Level subjects for a sharper match."}</p>
+  ${r.gap.length?`<p class="why"><b>Gap:</b> you’d need ${r.gap.join(" and ")} at A Level for this route.</p>`:`<p class="why">Your current A Level subjects already cover the core requirements.</p>`}
+  <button class="lnk" data-jump="${r.g}">Plan this route</button>`)};
+ $("s2").innerHTML=head(E,"Routes that fit you")+`
+ <h2>Your best matches</h2>
+ <p class="mute" style="margin-top:6px">Based on your A Level subjects, the grades you expect, and what you enjoy. Open any route to see why, then plan it in full.</p>
+ ${sc.slice(0,3).map(card).join("")}
+ <h2>Other routes</h2>
+ <div class="pill">${sc.slice(3).map(r=>`<button class="lnk" data-jump="${r.g}" style="margin-top:0">${DN[r.g].replace(/^./,c=>c.toUpperCase())}</button>`).join("")}</div>
+ <p class="note" style="text-align:left">Still unsure? Change your subjects or interests and check again. Many students plan two routes, like MBBS with allied health as backup.</p>`;
+ finish();
+}
+const MORE={
+sw:["Karachi: NED, University of Karachi, Dawood UET. Jamshoro: Mehran UET, University of Sindh. Nawabshah: QUEST. Lahore: UET, Punjab University, GCU, Information Technology University. Islamabad/Rawalpindi: NUST, COMSATS, QAU, Air University, NUTECH, IIUI, NUML. Peshawar: UET, University of Peshawar, IMSciences. Quetta/Khuzdar: BUITEMS, BUET Khuzdar. Multan: BZU. Faisalabad: NTU, GCUF.","Karachi: FAST, IBA, Habib, SZABIST, Bahria, DHA Suffa, Iqra, Hamdard, KIET, IoBM, Sir Syed UET, Muhammad Ali Jinnah University, Greenwich, Indus. Lahore: LUMS, FAST, UMT, UCP, Beaconhouse National University, Superior, Lahore Garrison, University of Lahore. Islamabad: FAST, Bahria, Riphah, Foundation, Muhammad Ali Jinnah. Swabi: GIKI. Peshawar: CECOS, Sarhad, City University."],
+eng:["Karachi: NED, Dawood UET. Jamshoro: Mehran UET. Nawabshah: QUEST. Lahore: UET (also Taxila, Faisalabad, KSK campuses). Rawalpindi/Islamabad: NUST (CEME, MCE, PNEC), Air University, NUTECH, IST, COMSATS. Peshawar/Mardan: UET. Khuzdar: BUET. Quetta: BUITEMS.","Karachi: Habib, Sir Syed UET, Bahria, Iqra, Hamdard, Muhammad Ali Jinnah University, FAST (electrical). Swabi: GIKI. Lahore: UMT, University of Lahore, Superior, FAST. Islamabad: Riphah, Bahria, Capital University of Science and Technology."],
+biz:["Karachi: University of Karachi. Sukkur: Sukkur IBA University. Lahore: Punjab University (IBIT/Hailey), GCU, LCWU. Islamabad: QAU, NUML, NUST Business School, COMSATS, Allama Iqbal Open University. Peshawar: IMSciences, University of Peshawar. Multan: BZU. Quetta: University of Balochistan.","Karachi: IBA, IoBM, SZABIST, Habib, Greenwich, Iqra, Hamdard, Bahria, FAST, KSBL. Lahore: LUMS (SDSB), Lahore School of Economics, UMT, UCP, FCC, BNU, Superior. Islamabad: Bahria, Riphah, Air, Foundation."],
+md:["Lahore: KEMU, Allama Iqbal Medical, Services Institute, Fatima Jinnah Medical University. Rawalpindi/Islamabad: Rawalpindi Medical University, NUMS (Army Medical). Peshawar/Abbottabad: Khyber Medical College, Ayub Medical. Quetta: Bolan Medical. Sindh: LUMHS (Jamshoro), SMBBMU (Larkana), PUMHS (Nawabshah). Public seats follow domicile quotas, so check your province’s rules.","Karachi: Aga Khan University, Liaquat National, Ziauddin, Baqai, Karachi Medical and Dental, Jinnah Medical and Dental, Dow International, Hamdard, Bahria. Lahore: Shalamar, Lahore Medical and Dental, UCMD. Islamabad/Rawalpindi: Shifa, Islamic International (Riphah), Rawal, Bahria."],
+law:["Karachi: University of Karachi, Hamdard (private). Jamshoro: University of Sindh. Lahore: Punjab University Law College. Islamabad: IIUI (Shariah and Law). Bahawalpur: IUB. Peshawar: University of Peshawar. Quetta: University of Balochistan.","Karachi: SZABIST, Sindh Muslim Law College, Hamdard, Bahria, Greenwich. Lahore: LUMS, Pakistan College of Law, UMT, BNU, UCP. Islamabad: Riphah, Bahria, Muhammad Ali Jinnah."],
+arch:["Karachi: NED (Architecture and Planning), Dawood UET. Jamshoro: Mehran UET. Lahore: UET, National College of Arts (portfolio test). Peshawar: UET. Rawalpindi: COMSATS, NUST (School of Art, Design and Architecture).","Karachi: Indus Valley School of Art and Architecture, Bahria, Habib, Iqra, Hamdard, DHA Suffa. Lahore: BNU, UMT, UCP. Islamabad: Bahria, Capital University."],
+psy:["Karachi: University of Karachi. Lahore: Punjab University, GCU, LCWU. Islamabad: QAU, NUML, PIDE (economics). Peshawar: University of Peshawar. Multan: BZU.","Karachi: Habib (social development and policy), IBA (social sciences), SZABIST, Bahria, Iqra, Hamdard. Lahore: LUMS (HSS), FCC, Kinnaird, Lahore School of Economics, UMT, BNU. Islamabad: Bahria, Riphah, Foundation."],
+media:["Karachi: University of Karachi (mass communication). Lahore: Punjab University (communication studies), National College of Arts, Pakistan Institute of Fashion and Design. Islamabad: QAU, NUML. Peshawar: University of Peshawar (journalism).","Karachi: SZABIST (media sciences), Indus Valley School, Iqra, Greenwich, Hamdard. Lahore: BNU, UCP, UMT, Superior. Islamabad: Bahria, Riphah."],
+agri:["Faisalabad: University of Agriculture. Rawalpindi: PMAS Arid Agriculture University. Tandojam: Sindh Agriculture University. Peshawar: Agriculture University. Uthal: Lasbela University of Agriculture, Water and Marine Sciences. Karachi: University of Karachi (environmental science). Islamabad: COMSATS, QAU.","Karachi: Bahria (environmental sciences), Hamdard. Lahore: UMT, University of Lahore. Islamabad: Riphah, Capital University."]};
+Object.assign(MORE,{
+law:["Karachi: Shaheed Zulfiqar Ali Bhutto University of Law, University of Karachi, Sindh Muslim Law College, Government Islamia Law College, SZAB Law College, Federal Urdu University|Sindh: University of Sindh (Jamshoro), Shah Abdul Latif University (Khairpur), Shaheed Benazir Bhutto University (Nawabshah)|Lahore: Punjab University (University Law College), GCU Lahore, Lahore Law College|Islamabad: Quaid-i-Azam University, IIUI|Punjab: Islamia University Bahawalpur, GCU Faisalabad, University of Gujrat, University of Sargodha, BZU Multan (and D.G. Khan campus)|Khyber Pakhtunkhwa: University of Peshawar, Gomal (D.I. Khan), University of Malakand, Abdul Wali Khan (Mardan), University of Haripur|Balochistan: University of Balochistan (Quetta)","Karachi: SZABIST, Hamdard, Ziauddin, Iqra, Bahria, Dadabhoy Institute, Denning (University of London external LLB), L’ecole for Advanced Studies (University of London external)|Hyderabad: Indus College of Law|Lahore: LUMS, UCP, UMT, University of Lahore, Superior, Minhaj, Kinnaird, Riphah, University of South Asia, Green International, Lahore Leads, Pakistan College of Law, Punjab Law College, Bahria Lahore|Islamabad and Rawalpindi: NUST, Bahria, Hamdard, Riphah, Islamabad Law College, Punjab Law College, Al Meezan Law College|Peshawar: Qurtuba, Islamia Law College, Frontier Law College|Quetta: Quetta Law College, Zarghoon Law College"],
+md:["Karachi: Dow Medical College, Dow International, Karachi Medical and Dental College, Sindh Medical College (JSMU), Shaheed Mohtarma Benazir Bhutto Medical College (Lyari)|Sindh: LUMHS (Jamshoro), PUMHS (Nawabshah), SMBBMU (Larkana)|Lahore: King Edward, Allama Iqbal, Services Institute, Fatima Jinnah Medical University, Ameer-ud-Din, Shaikh Khalifa Bin Zayed|Punjab: Nishtar (Multan), Quaid-e-Azam (Bahawalpur), Rawalpindi Medical University, Punjab Medical College (Faisalabad), Sargodha, Gujranwala, Sialkot, Sheikh Zayed (Rahim Yar Khan)|Islamabad and Rawalpindi: Federal Medical and Dental College, Army Medical College (NUMS)|Khyber Pakhtunkhwa: Khyber Medical College (Peshawar), Khyber Girls Medical College (Peshawar), Ayub (Abbottabad), Gomal (D.I. Khan), Bannu, Nowshera, Saidu (Swat)|Balochistan: Bolan Medical College (Quetta)|Azad Kashmir: Poonch Medical College (Rawalakot)","Karachi: Aga Khan University, Ziauddin, Liaquat National, Bahria, Jinnah Medical and Dental, United, KIMS, Al-Tibri, Baqai, Fazaia Ruth Pfau|Lahore: CMH Lahore, Lahore Medical and Dental, Abu Umara|Islamabad and Rawalpindi: Shifa, Foundation University, HBS, Islamabad Medical and Dental, Al-Nafees, Fazaia, NUST School of Health Sciences, Islamic International, Rawal|Peshawar: Peshawar Medical College, Rehman, Kabir, Pak International, Jinnah Medical College|Quetta: Quetta Institute of Medical Sciences"],
+eng:["Karachi: NED, Dawood UET, Sir Syed UET, PNEC (NUST)|Sindh: Mehran UET (Jamshoro), QUEST (Nawabshah)|Lahore: UET Lahore (also Faisalabad, Narowal and KSK campuses), GCU Lahore, LCWU, University of the Punjab|Punjab: UET Taxila, NTU (Faisalabad), NFC IEFR (Faisalabad), NFC IET (Multan), BZU (Multan), IUB (Bahawalpur), University of Gujrat, Rachna College (Gujranwala), COMSATS (Lahore, Wah, Attock, Sahiwal)|Islamabad and Rawalpindi: NUST (SEECS, SCEE, SMME and others), CEME, MCS, Air University, IST, PIEAS, COMSATS, IIUI, NUML, FUUAST, CUST|Khyber Pakhtunkhwa: UET Peshawar, UET Mardan|Balochistan: BUET Khuzdar, BUITEMS (Quetta)","Karachi: Habib, Bahria, FAST-NUCES, Iqra, Hamdard (check PEC status)|Khyber Pakhtunkhwa: GIKI (Swabi), CECOS (Peshawar), City University (Peshawar)|Lahore: UMT, University of Lahore, Superior, Riphah|Islamabad: Bahria, Riphah, Foundation University, Abasyn, University of Lahore (Islamabad campus), FAST-NUCES"],
+arch:["Karachi: NED, Dawood UET, University of Karachi|Lahore: UET Lahore, National College of Arts (Lahore and Rawalpindi), University of the Punjab, COMSATS Lahore, LCWU|Islamabad: COMSATS, NUST|Khyber Pakhtunkhwa: UET Peshawar, University of Peshawar (town planning)","Karachi: Indus Valley School of Art and Architecture, Sir Syed UET, Nazeer Hussain University, SABSU|Lahore: BNU, UMT, University of Lahore, Superior, University of South Asia|Peshawar: CECOS, City University"],
+sw:["Karachi: NED, Dawood UET, University of Karachi, Bahria, PNEC, Benazir Bhutto Shaheed University (Lyari)|Sindh: Mehran UET, University of Sindh, QUEST|Lahore: UET Lahore, Punjab University (PUCIT), GCU, LCWU, University of Education, Information Technology University, COMSATS, Bahria, Afro Asian Institute|Islamabad: NUST, COMSATS, Air University, QAU, IIUI, NUTECH, NUML, PIEAS|Punjab: BZU (Multan), Air University (Multan), NTU (Faisalabad), GCUF (Faisalabad)|Khyber Pakhtunkhwa: UET Peshawar, University of Peshawar, IMSciences|Balochistan: BUITEMS (Quetta)","Karachi: FAST-NUCES, IBA, Habib, SZABIST, Bahria, DHA Suffa, Iqra, Hamdard, Indus, KIET, Sir Syed UET, Muhammad Ali Jinnah University, Al-Kawthar, Al-Ghazali, Baqai, Barret Hodgson|Lahore: LUMS, FAST-NUCES, BNU, UMT, UCP, University of Lahore, Superior, Global Institute|Islamabad: FAST-NUCES, Bahria, Riphah, Foundation, Abasyn|Khyber Pakhtunkhwa: GIKI, FAST (Peshawar), Abasyn, City University, CECOS, Qurtuba"],
+biz:["Karachi: University of Karachi, Jinnah University for Women, Bahria|Sindh: Sukkur IBA University|Lahore: Hailey College of Commerce (Punjab University), GCU, LCWU, COMSATS Lahore|Islamabad: NUST Business School, Air University, COMSATS, IIUI, QAU|Punjab: BZU (Multan), COMSATS (Attock, Sahiwal, Vehari, Wah)|Khyber Pakhtunkhwa: IMSciences (Peshawar), Abdul Wali Khan (Mardan), Hazara University (Mansehra)|Balochistan: BUITEMS (Quetta)","Karachi: IBA, IoBM, SZABIST, Iqra, Bahria, Habib, BIZTEK, FAST|Hyderabad: Isra University|Lahore: LUMS (Suleman Dawood), Lahore School of Economics, UCP, UMT, University of Lahore, BNU|Islamabad: FAST-NUCES, Bahria, Riphah, Muhammad Ali Jinnah University|Khyber Pakhtunkhwa: Qurtuba (D.I. Khan), CECOS, City University"],
+psy:["Karachi: University of Karachi, Jinnah University for Women|Lahore: Punjab University (Institute of Applied Psychology), GCU, LCWU|Islamabad: Quaid-i-Azam University, NUML, PIDE|Khyber Pakhtunkhwa: University of Peshawar|Punjab: BZU (Multan)","Karachi: Habib, IBA, SZABIST, Bahria, Iqra, Hamdard|Lahore: LUMS, FCC, Kinnaird, UMT, BNU, Lahore School of Economics|Islamabad: Bahria, Riphah, Foundation"],
+media:["Karachi: University of Karachi (mass communication)|Lahore: Punjab University (communication studies), National College of Arts, Pakistan Institute of Fashion and Design|Islamabad: QAU, NUML|Khyber Pakhtunkhwa: University of Peshawar (journalism)","Karachi: SZABIST, Indus Valley School, Iqra, Hamdard, Greenwich|Lahore: BNU, UCP, UMT, Superior|Islamabad: Bahria, Riphah"],
+agri:["Punjab: University of Agriculture Faisalabad, PMAS Arid Agriculture University (Rawalpindi)|Sindh: Sindh Agriculture University (Tandojam)|Khyber Pakhtunkhwa: Agriculture University Peshawar|Balochistan: Lasbela University (Uthal)|Karachi: University of Karachi|Islamabad: COMSATS, QAU","Karachi: Bahria, Hamdard|Lahore: UMT, University of Lahore|Islamabad: Riphah, Capital University"]});
+MORE.ds=MORE.sw;
+// Official sites. Every address below was checked against HEC's recognised-university list or the institution's own pages (October 2026).
+// FAST has one site per campus, so it is resolved by city. Anything not listed falls back to a targeted search, never a guessed address.
+const OFF=[
+ [/^FAST/,(n,c)=>{const t=n+" "+(c||"");return /Karachi/.test(t)?"https://khi.nu.edu.pk":/Lahore/.test(t)?"https://lhr.nu.edu.pk":"https://www.nu.edu.pk"}],
+ [/^Dow Medical College/,"www.duhs.edu.pk/dow-medical-college/"],
+ [/^Dow/,"www.duhs.edu.pk"],
+ [/^NED\b/,"www.neduet.edu.pk"],
+ [/^Dawood UET/,"www.duet.edu.pk"],
+ [/^Sir Syed UET/,"www.ssuet.edu.pk"],
+ [/^IBA\b/,"www.iba.edu.pk"],
+ [/^Sukkur IBA/,"www.iba-suk.edu.pk"],
+ [/^(NUST|PNEC|CEME$|MCS$)/,"www.nust.edu.pk"],
+ [/^LUMS/,"www.lums.edu.pk"],
+ [/^GIKI/,"www.giki.edu.pk"],
+ [/^COMSATS/,"www.comsats.edu.pk"],
+ [/^Virtual University/,"www.vu.edu.pk"],
+ [/^DHA Suffa/,"www.dsu.edu.pk"],
+ [/^(Jinnah Sindh|Sindh Medical College)/,"www.jsmu.edu.pk"],
+ [/^Karachi Medical and Dental/,"www.kmdc.edu.pk"],
+ [/^Shaheed Mohtarma Benazir Bhutto Medical College/,"www.smbbmcl.edu.pk"],
+ [/^Aga Khan/,"www.aku.edu"],
+ [/^Ziauddin/,"www.zu.edu.pk"],
+ [/^Baqai/,"www.baqai.edu.pk"],
+ [/^Hamdard/,"www.hamdard.edu.pk"],
+ [/^Bahria/,"www.bahria.edu.pk"],
+ [/^Habib/,"www.habib.edu.pk"],
+ [/^Iqra/,"www.iqra.edu.pk"],
+ [/^SZABIST/,"www.szabist.edu.pk"],
+ [/^Denning/,"www.denning.edu.pk"],
+ [/^University of Karachi/,"www.uok.edu.pk"],
+ [/^(Punjab University|University of the Punjab)/,"www.pu.edu.pk"],
+ [/^(QAU|Quaid-i-Azam University)/,"www.qau.edu.pk"],
+ [/^IIUI/,"www.iiu.edu.pk"],
+ [/^UET Lahore/,"www.uet.edu.pk"],
+ [/^UET Taxila/,"www.uettaxila.edu.pk"],
+ [/^UET Peshawar/,"www.uetpeshawar.edu.pk"],
+ [/^Riphah/,"www.riphah.edu.pk"],
+ [/^UMT/,"www.umt.edu.pk"],
+ [/^UCP/,"www.ucp.edu.pk"],
+ [/^University of Agriculture Faisalabad/,"www.uaf.edu.pk"],
+ [/^(King Edward|KEMU)/,"www.kemu.edu.pk"],
+ [/^CECOS/,"www.cecos.edu.pk"],
+ [/^Mehran UET/,"www.muet.edu.pk"],
+ [/^QUEST/,"www.quest.edu.pk"],
+ [/^University of Sindh/,"www.usindh.edu.pk"],
+ [/^Shah Abdul Latif/,"www.salu.edu.pk"],
+ [/^Shaheed Benazir Bhutto University \(Nawabshah\)/,"www.sbbusba.edu.pk"],
+ [/^Benazir Bhutto Shaheed University/,"www.bbsul.edu.pk"],
+ [/^Sindh Agriculture University/,"www.sau.edu.pk"],
+ [/^LUMHS/,"www.lumhs.edu.pk"],
+ [/^PUMHS/,"www.pumhs.edu.pk"],
+ [/^SMBBMU/,"www.smbbmu.edu.pk"],
+ [/^Shaheed Zulfiqar Ali Bhutto University of Law/,"www.szabul.edu.pk"],
+ [/^(Federal Urdu University|FUUAST)/,"www.fuuast.edu.pk"],
+ [/^Isra University/,"www.isra.edu.pk"],
+ [/^Indus Valley/,"www.indusvalley.edu.pk"],
+ [/^Indus$/,"www.indus.edu.pk"],
+ [/^IoBM/,"www.iobm.edu.pk"],
+ [/^BIZTEK/,"www.biztek.edu.pk"],
+ [/^KIET/,"www.pafkiet.edu.pk"],
+ [/^Muhammad Ali Jinnah/,"www.jinnah.edu"],
+ [/^Jinnah University for Women/,"www.juw.edu.pk"],
+ [/^Greenwich/,"www.greenwichuniversity.edu.pk"],
+ [/^Dadabhoy/,"www.dadabhoy.edu.pk"],
+ [/^Nazeer Hussain/,"www.nhu.edu.pk"],
+ [/^Air University/,"www.au.edu.pk"],
+ [/^NUTECH/,"www.nutech.edu.pk"],
+ [/^NUML/,"www.numl.edu.pk"],
+ [/^PIDE/,"www.pide.org.pk"],
+ [/^PIEAS/,"www.pieas.edu.pk"],
+ [/^IST$/,"www.ist.edu.pk"],
+ [/^(Capital University|CUST)/,"www.cust.edu.pk"],
+ [/^Foundation/,"www.fui.edu.pk"],
+ [/^Shifa/,"www.stmu.edu.pk"],
+ [/^Army Medical College/,"www.numspak.edu.pk"],
+ [/^(BNU|Beaconhouse)/,"www.bnu.edu.pk"],
+ [/^FCC/,"www.fccollege.edu.pk"],
+ [/^Kinnaird/,"www.kinnaird.edu.pk"],
+ [/^Lahore School of Economics/,"www.lahoreschoolofeconomics.edu.pk"],
+ [/^Lahore Leads/,"www.leads.edu.pk"],
+ [/^Lahore Garrison/,"lgu.edu.pk"],
+ [/^Minhaj/,"www.mul.edu.pk"],
+ [/^Global Institute/,"www.global.edu.pk"],
+ [/^Superior/,"www.superior.edu.pk"],
+ [/^University of Lahore/,"www.uol.edu.pk"],
+ [/^University of South Asia/,"www.usa.edu.pk"],
+ [/^National College of Arts/,"www.nca.edu.pk"],
+ [/^Pakistan Institute of Fashion/,"www.pifd.edu.pk"],
+ [/^Information Technology University/,"www.itu.edu.pk"],
+ [/^University of Education/,"www.ue.edu.pk"],
+ [/^(GCU Lahore|GCU$)/,"www.gcu.edu.pk"],
+ [/^(GCU Faisalabad|GCUF)/,"www.gcuf.edu.pk"],
+ [/^LCWU/,"www.lcwu.edu.pk"],
+ [/^PMAS/,"www.uaar.edu.pk"],
+ [/^(Islamia University Bahawalpur|IUB)/,"www.iub.edu.pk"],
+ [/^BZU/,"www.bzu.edu.pk"],
+ [/^University of Gujrat/,"www.uog.edu.pk"],
+ [/^(University of Sargodha|Sargodha$)/,"www.uos.edu.pk"],
+ [/^NTU/,"www.ntu.edu.pk"],
+ [/^NFC IET/,"www.nfciet.edu.pk"],
+ [/^Abasyn/,"www.abasyn.edu.pk"],
+ [/^City University/,"www.cityuniversity.edu.pk"],
+ [/^Qurtuba/,"www.qurtuba.edu.pk"],
+ [/^Sarhad/,"www.suit.edu.pk"],
+ [/^IMSciences/,"www.imsciences.edu.pk"],
+ [/^University of Peshawar/,"www.upesh.edu.pk"],
+ [/^Agriculture University Peshawar/,"www.aup.edu.pk"],
+ [/^Abdul Wali Khan/,"www.awkum.edu.pk"],
+ [/^Gomal/,"www.gu.edu.pk"],
+ [/^Hazara University/,"www.hu.edu.pk"],
+ [/^University of Haripur/,"www.uoh.edu.pk"],
+ [/^University of Malakand/,"www.uom.edu.pk"],
+ [/^BUET Khuzdar/,"buetk.edu.pk"],
+ [/^BUITEMS/,"www.buitms.edu.pk"],
+ [/^University of Balochistan/,"www.uob.edu.pk"],
+ [/^Lasbela/,"www.luawms.edu.pk"]];
+const KIND={md:" medical college",law:" law college"};
+const findO=n=>OFF.find(o=>o[0].test(n));
+const href=(n,c,g)=>{const o=findO(n);if(o)return typeof o[1]==="function"?o[1](n,c):"https://"+o[1];
+ const nm=n.replace(/[()]/g,"").trim();return "https://www.google.com/search?q="+encodeURIComponent(nm+(c&&!nm.includes(c)?" "+c:"")+(KIND[g]||"")+" official website admissions")};
+const offLink=n=>{const a=(u,t)=>`<a href="${u}" target="_blank" rel="noopener">${t}</a>`,o=findO(n),u=href(n);
+ return a(u,o?"Official site":"Find official site")+(/^FAST/.test(n)?" · "+a("https://admissions.nu.edu.pk","Apply online (all FAST campuses)"):/^Dow/.test(n)?" · "+a("https://admissions.duhs.edu.pk","DUHS admissions"):"")};
+const dyr=n=>/^Dow/.test(n)?"closing merit from the 2024 cycle, other figures year not stated":"last reported cycle, the source doesn’t state the year";
+const REG={law:["Pakistan Bar Council","https://pakistanbarcouncil.org"],md:["PMDC","https://pmdc.pk"],eng:["Pakistan Engineering Council","https://www.pec.org.pk"],sw:["NCEAC","https://nceac.org.pk"],ds:["NCEAC","https://nceac.org.pk"],arch:["PCATP","https://pcatp.org.pk"]};
+const DYM={law:"Pakistan Bar Council register and 2026 admission listings; Denning page for 2026–27",md:"PMDC private list dated 7 November 2025; public list from the 2020 PMC list plus additions from my own knowledge",eng:"PEC-recognised list (year not stated) plus additions from my own knowledge",sw:"NCEAC accreditation records from 2024–2025 plus additions from my own knowledge",ds:"NCEAC accreditation records from 2024–2025 plus additions from my own knowledge",biz:"NBEAC accredited list (older, year not stated) plus additions from my own knowledge",arch:"PCATP accreditation status, 2025–2026 editions"};
+const linkList=(s,k)=>s.split("|").map(g=>{const i=g.indexOf(":"),city=g.slice(0,i),items=g.slice(i+1).split(/,\s*(?![^()]*\))/);return `<b>${city}</b>: `+items.map(x=>{x=x.trim();return `<a href="${href(x,city,k)}" target="_blank" rel="noopener">${x}</a>`}).join(", ")}).join("<br>");
+const moreHtml=g=>det("All other universities offering this degree","","HEC-recognised options beyond the ones above. Not exhaustive.",fld("Public (lower fees)",linkList(MORE[g][0],g))+fld("Private",linkList(MORE[g][1],g))+`<p class="src">Data year: ${DYM[g]||"my own knowledge, not year-stamped"}. Links open the official site where I’m sure of the address, otherwise a search for it. Check recognition: <a href="${(REG[g]||["HEC","https://www.hec.gov.pk"])[1]}" target="_blank" rel="noopener">${(REG[g]||["HEC"])[0]}</a>. Compiled 25 October 2026 from HEC, PMDC, PEC, NCEAC, NBEAC, PCATP and Pakistan Bar Council lists plus education sites. Programs, campuses and recognition change every year, so confirm recognition, fees, tests and seats on each official page before you apply.</p>`);
+const GEN={
+law:{n:"lawyer",tit:"Universities for LLB",need:[],how:"The 5-year LLB needs the HEC Law Admission Test (LAT), which Pakistan Bar Council rules require for recognised programs. Check the current pass mark and dates. Some private providers, such as Denning in Karachi, run the University of London external LLB instead; check that route’s Bar Council recognition before paying.",plan:"<p><b>Missed LAT or a seat?</b> Retake LAT and apply to several universities. Check that the degree is Bar Council recognised before paying.</p>"},
+arch:{n:"architect or designer",tit:"Universities for architecture and design",need:["Mathematics"],how:"Architecture programs use their own entry tests, and NCA and some others want a portfolio. Pakistan Council of Architects and Town Planners recognition is needed to practise. Art and Design at A Level helps.",plan:"<p><b>No seat?</b> Interior or communication design and civil engineering overlap strongly. Build your portfolio and retake the entry test.</p>"},
+psy:{n:"psychology or social scientist",tit:"Universities for psychology and social sciences",need:[],how:"Most programs ask for any A Level subjects, with strong English helping. Liberal arts universities use their own tests or SAT. Clinical practice later needs postgraduate study.",plan:"<p><b>Not sure which field?</b> Psychology, economics, sociology and international relations share first-year courses at several universities, so you can switch early.</p>"},
+media:{n:"media and arts professional",tit:"Universities for media, arts and design",need:[],how:"No fixed A Level subjects. Portfolios, aptitude tests and interviews often count as much as marks. English and Art and Design help.",plan:"<p><b>No seat?</b> Build a portfolio through freelance work and short courses; many hirers value it as much as the degree.</p>"},
+agri:{n:"agriculture or environment professional",tit:"Universities for agriculture and environment",need:["Biology"],how:"Agriculture degrees usually want pre-medical or pre-agriculture subjects (Biology with Chemistry). Public agriculture universities have domicile quotas and their own tests.",plan:"<p><b>No seat?</b> Food science, biotechnology, environmental science and veterinary programs overlap and use similar subjects.</p>"}};
+Object.assign(DN,Object.fromEntries(Object.entries(GEN).map(([k,v])=>[k,v.n])));
+function general(E){const g=S.goal,G=GEN[g],ck=base(),miss=G.need.filter(x=>!S.as.has(x));
+ ck.push(miss.length?["w",`This field usually asks for ${miss.join(" and ")} at A Level, which isn’t in your plan.`]:["ok",G.need.length?"Your A Level subjects match what these programs usually ask for.":"No specific A Level subjects are required, but strong grades matter."]);
+ ck.push(["ok",G.how]);
+ $("s2").innerHTML=head(E,`Your route to ${DN[g]}`)+`<h2>What to sort out</h2><div class="card">${ckHtml(ck)}</div><h2>${G.tit}</h2><p class="mute" style="margin-top:6px">${+S.b<=100?"On your budget, start with the public list.":"Public universities cost far less than private ones."}</p>${moreHtml(g)}<h2>If this route doesn’t work</h2><div class="card">${G.plan}</div>`;
+ finish();}
+const REC={sw:["Mathematics","Physics","Computer Science"],ds:["Mathematics","Computer Science","Further Maths"],eng:["Mathematics","Physics","Chemistry"],md:["Biology","Chemistry","Physics"],ah:["Biology","Chemistry","Physics"],biz:["Mathematics","Economics","Business"],law:["English Literature","History","Law"],arch:["Mathematics","Physics","Art and Design"],psy:["Psychology","Sociology","English Literature"],media:["Media Studies","English Literature","Art and Design"],agri:["Biology","Chemistry","Geography"]};
+function oPlan(E){const r=REC[S.goal];
+ if(!r)return `<h2>Your A Level subject plan</h2><div class="card"><p>Not sure yet? Keep Mathematics plus two sciences or Economics in your plan; that keeps most doors open. These marks come from current or expected grades and will change with your real results.</p></div>`;
+ const need=r.filter(x=>!S.as.has(x));
+ return `<h2>Your A Level subject plan</h2><div class="card"><p>For ${DN[S.goal]}, universities usually look for <b>${r.join(", ")}</b>.</p><div class="ck ${need.length?"w":""}"><b>${need.length?"!":"✓"}</b><span>${need.length?`Not in your plan yet: ${need.join(", ")}. Add them above, or check what your school offers.`:"Your planned subjects cover this goal."}</span></div><p class="mute" style="margin-top:8px">These marks come from current or expected O Level grades and will change with your real results.</p></div>`}
+function setLevel(l){S.level=l;const O=l==="O";$("s0").hidden=true;$("s1").hidden=false;scrollTo(0,0);
+ $("t1").textContent=O?"You’re in O Levels. Let’s plan your next move.":"You’re in A Levels. Let’s map your route.";
+ $("p1").textContent=O?"Enter your current or expected O Level grades and the A Level subjects you’re considering. We’ll convert your marks the way IBCC does, show which A Level subjects your goal needs, and which universities it leads to.":"Enter your real O Level results and your A Level plan. We’ll convert them the way IBCC does and show what you need for your goal, or help you find one.";
+ $("lst").textContent=O?"Where are you in O Levels?":"Where are you in A Levels?";
+ $("lo").textContent=O?"Your O Level grades (current or expected)":"Your O Level grades";
+ $("la").textContent=O?"A Level subjects you’re considering":"Your A Level subjects";
+ $("ha").textContent=O?"Tap the ones you’re considering, then set the grade you’re aiming for in each.":"Tap the ones you’re taking, then set the grade you expect in each.";
+ const st=document.querySelector('[data-k="stage"]');S.stage=O?"O1":"AS";
+ st.innerHTML=O?'<button class="chip" data-v="O1" aria-pressed="true">Starting (Grade 9)</button><button class="chip" data-v="O2">Final year (Grade 10 or 11)</button>':'<button class="chip" data-v="AS" aria-pressed="true">Starting (AS year)</button><button class="chip" data-v="A2">Final year (A2)</button>';S.st0=S.stage;setYrs();renderAG()}
+document.querySelectorAll(".lvb").forEach(b=>b.onclick=()=>setLevel(b.dataset.l));
+$("b0").onclick=()=>{$("s1").hidden=true;$("s0").hidden=false;scrollTo(0,0)};
+["yo","ya"].forEach(id=>$(id).innerHTML=Array.from({length:11},(_,i)=>2031-i).map(y=>`<option value="${y}">${y}</option>`).join("")+'<option value="2020">2020 or earlier</option>');
+function setYrs(){const y=({AS:2028,A2:2027,O1:2030,O2:2029})[S.stage];$("yo").value=y-2;$("ya").value=y}
+setYrs();
+function sesCard(E){const n=[];
+ const lab=(y,l)=>y<2021?`${l} Level ${y<2021?"2020 or earlier":y}: A* counted as 90`:y>LATEST_SES?`${l} Level ${y}: IBCC’s ${LATEST_SES} table`:`${l} Level ${y}: IBCC’s ${y} table`;
+ if(E.yo<2021||E.ya<2021)n.push("One of your sessions is 2020 or earlier. IBCC publishes subject-wise A* marks only from session 2021, so A* is counted as 90 for those sessions. Treat this as a rough guide and check ibcc.edu.pk.");
+ if(E.star&&(E.yo>=2021||E.ya>=2021))n.push(`A* is not a flat 90. IBCC sets A* marks subject by subject for each session (about 93 to 96 since 2021), so each A* here uses the table for its own session. Used: ${lab(E.yo,"O")}; ${lab(E.ya,"A")}.`);
+ if(E.yo>LATEST_SES||E.ya>LATEST_SES)n.push(`A session after ${LATEST_SES} hasn’t happened yet, so those grades are targets. IBCC hasn’t published a table for it, so this uses the ${LATEST_SES} table, the most recent one, and IBCC may change it.`);
+ return `<div class="card"><p><b>Sessions:</b> O Level ${E.yo<2021?"2020 or earlier":E.yo}, A Level ${E.ya<2021?"2020 or earlier":E.ya}.</p>${n.map(t=>`<p class="mute" style="margin-top:8px">${t}</p>`).join("")}<p class="mute" style="margin-top:8px">Information last updated 25 October 2026. Grade table: <a href="https://ibcc.edu.pk/conversion-for-equivalence/" target="_blank" rel="noopener">IBCC conversion</a> for sessions from 2021 (A to E fixed, A* subject-wise per session, checked against the IBCC site). Fees, tests and merit figures come from the last admissions cycle reported on university and education sites, and were not re-verified in this update.</p></div>`}
+const anim=()=>{if(matchMedia("(prefers-reduced-motion:reduce)").matches)return;document.querySelectorAll("#s2 .card b").forEach(b=>{const m=/^([\d.]+)%$/.exec(b.textContent);if(!m)return;const to=+m[1],t0=performance.now(),f=t=>{const p=Math.min(1,(t-t0)/1000);b.textContent=(to*(1-Math.pow(1-p,3))).toFixed(1)+"%";if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)})};
+new MutationObserver(anim).observe($("s2"),{childList:true});
+document.addEventListener("pointermove",e=>{const c=e.target.closest&&e.target.closest(".card,details.u");if(c){const r=c.getBoundingClientRect();c.style.setProperty("--mx",e.clientX-r.left+"px");c.style.setProperty("--my",e.clientY-r.top+"px")}});
+addEventListener("scroll",()=>{const h=document.documentElement;$("pg").style.width=(h.scrollTop/((h.scrollHeight-h.clientHeight)||1)*100)+"%"});
+$("afl").oninput=e=>{const q=e.target.value.toLowerCase();$("als").querySelectorAll(".chip").forEach(c=>c.style.display=c.textContent.toLowerCase().includes(q)?"":"none")};
+function run(){if(S.dom!=="Other")S.dn=S.dom;if(S.dom!=="Karachi"&&S.dom!=="Sindh")S.dom="Other";const E=eq();GEN[S.goal]?general(E):S.goal==="un"?unsure(E):S.goal==="md"?doctor(E):S.goal==="ah"?allied(E):uniGoal(E)}
+$("go").onclick=()=>{
+ const E=eq();
+ if(E.n<5||!S.as.size){$("err").textContent="Add at least 5 of your O Level grades and pick your A Level subjects.";return}
+ $("err").textContent="";run();
+};
+</script>
+<script>
+(()=>{
+const M={lv:"I",st:"2",grp:"PE",goal:"sw",dom:"Karachi",b:"400"};
+const show=id=>{["s00","s0","sm0","sm","sm2"].forEach(x=>$(x).hidden=x!==id);scrollTo(0,0)};
+const GR={PM:["Pre-Medical (FSc)",["Biology","Chemistry","Physics"]],PE:["Pre-Engineering (FSc)",["Mathematics","Physics","Chemistry"]],ICS:["ICS (Computer Science)",["Mathematics","Physics","Computer Science"]],COM:["I.Com (Commerce)",["Economics","Accounting","Business"]],FA:["FA (Arts and humanities)",[]]};
+const REQ={sw:["Mathematics"],ds:["Mathematics"],eng:["Mathematics","Physics"],md:["Biology","Chemistry","Physics"],ah:["Biology","Chemistry"]};
+const REC={sw:"Pre-Engineering or ICS",ds:"Pre-Engineering or ICS",eng:"Pre-Engineering",md:"Pre-Medical",ah:"Pre-Medical",biz:"I.Com, or Pre-Engineering or ICS if you like maths",law:"any group (FA and I.Com are common)",arch:"Pre-Engineering",psy:"any group",media:"any group (FA is common)",agri:"Pre-Medical"};
+const SUG={PM:["md","ah","agri","psy"],PE:["eng","sw","ds","arch"],ICS:["sw","ds","eng","biz"],COM:["biz","law","psy","media"],FA:["law","psy","media","arch"]};
+const IN="width:110px;padding:8px;border-radius:10px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);font:inherit";
+const q=s=>document.querySelector(s).outerHTML;
+document.querySelectorAll("#s00 .lvb").forEach(b=>b.onclick=()=>show(b.dataset.s==="C"?"s0":"sm0"));
+document.querySelectorAll("#sm0 .lvb").forEach(b=>b.onclick=()=>{M.lv=b.dataset.m;build();show("sm")});
+$("b00").onclick=$("bm0").onclick=()=>show("s00");
+function build(){const I=M.lv==="I";Object.assign(M,{st:I?"2":"1",grp:"PE",goal:"sw",dom:"Karachi",b:"400"});
+ const ch=(k,a)=>`<div class="chips" data-k="${k}">${a.map(([v,t])=>`<button class="chip" data-v="${v}" aria-pressed="${M[k]===v}">${t}</button>`).join("")}</div>`;
+ const mk=(id,l,d)=>`<div class="gr"><span>${l}</span><input id="${id}" type="number" min="0" inputmode="numeric" value="${d}" style="${IN}"></div>`;
+ $("sm").innerHTML=`<button class="back" id="bm1">‹ Change level</button><h1>${I?"You’re in Intermediate. Let’s map your route.":"You’re in Matric. Let’s plan your next move."}</h1><p class="mute" style="margin-top:8px">${I?"Enter your Matric result and your Intermediate marks. Pakistani board marks are used as they are, with no conversion, and we show what your goal needs.":"Enter your Matric marks (so far, or the marks you expect) and the Intermediate group you’re considering. We’ll show which group your goal needs and where it leads."}</p>
+<label class="q">Which field are you interested in?</label><p class="hint">Pick a broad field, or a specific profession if you already know it.</p>${q('#s1 [data-k="goal"]')}
+<label class="q">Where are you in ${I?"Intermediate":"Matric"}?</label>${ch("st",I?[["1","First year (Part I)"],["2","Second year (Part II)"]]:[["1","Class 9"],["2","Class 10 (final year)"]])}
+<label class="q">Matric marks</label><p class="hint">${I?"Your SSC result.":"Your marks so far, or the marks you expect."} Most boards total 1100.</p>${mk("mo","Obtained","")}${mk("mt","Out of",1100)}
+<label class="q">Intermediate marks${I?"":" (optional)"}</label><p class="hint">${I?"Your Part I result, or the total you expect.":"Leave blank if you don’t know yet; we’ll use your Matric percentage as a guide."} Most boards total 1100.</p>${mk("io","Obtained","")}${mk("it","Out of",1100)}
+<label class="q">${I?"Your Intermediate group":"Intermediate group you’re considering"}</label>${ch("grp",Object.entries(GR).map(([k,v])=>[k,v[0]]))}
+<label class="q">Your domicile</label>${q('#s1 [data-k="dom"]')}<label class="q">Budget for fees per year</label>${q('#s1 [data-k="b"]')}
+<div class="err" id="em"></div><button class="btn" id="gm">Check your paths</button>`}
+$("sm").onclick=e=>{const c=e.target.closest(".chip"),g=c&&c.closest("[data-k]");if(g){M[g.dataset.k]=c.dataset.v;g.querySelectorAll(".chip").forEach(x=>x.setAttribute("aria-pressed",x===c))}else if(e.target.id==="bm1")show("sm0");else if(e.target.id==="gm")go()};
+function go(){const v=id=>parseFloat($(id).value),mo=v("mo"),mt=v("mt")||1100,io=v("io"),it=v("it")||1100,I=M.lv==="I",er=$("em");
+ if(!(mo>=0)||mo>mt){er.textContent="Enter your Matric marks, and make sure they’re not above the total.";return}
+ if(I&&!(io>=0)){er.textContent="Enter your Intermediate marks (your Part I result or the total you expect).";return}
+ if(io>it){er.textContent="Intermediate marks can’t be above the total.";return}
+ er.textContent="";M.m=mo/mt*100;M.hasI=io>=0;M.f=M.hasI?io/it*100:M.m;mRun()}
+function mRun(){
+ const g=M.goal,I=M.lv==="I",as=GR[M.grp][1],b=+M.b,m=M.m,f=M.f,oth=!["Karachi","Sindh"].includes(M.dom),dom=M.dom==="Karachi"?"Karachi":M.dom==="Sindh"?"Other Sindh":"Another province",cfg=CFG[g];
+ const T=I?(M.st==="2"?"Your Part II exams are usually in spring, with results in summer. Entry tests then run mostly June to August, and some universities (LUMS, IBA) run earlier. You can usually apply while awaiting results.":"Your final exams are next year, so treat these marks as a guide and expect them to change."):(M.st==="2"?"After your Matric results you choose an Intermediate group and apply to a college, usually in summer. Seats in popular groups often go by Matric merit, so every mark counts.":"You have time. Your Matric result will decide which Intermediate group and college you can get into.");
+ const ck=[],need=REQ[g]||(GEN[g]?GEN[g].need:[]),miss=need.filter(x=>!as.includes(x));
+ if(need.length)ck.push(miss.length?["w",`${GR[M.grp][0]} doesn’t cover ${miss.join(" and ")}, which this goal usually needs. ${I?"Check each university’s eligibility page before you apply.":"Consider "+REC[g]+"."}`]:["ok","Your group covers the subjects this goal usually needs."]);
+ else if(g!=="un")ck.push(["ok","This goal doesn’t demand specific subjects, but strong marks matter."]);
+ if(!I&&g!=="un")ck.push(["ok",`For ${DN[g]}, the usual Intermediate group is ${REC[g]}.`]);
+ if(g==="md"){ck.push(f>=65?["ok",`Your ${I?"Intermediate":"expected"} marks (${f.toFixed(1)}%) are above the 65% PMDC requires to sit MDCAT.`]:["w",`Your ${I?"Intermediate":"expected"} marks (${f.toFixed(1)}%) are below the 65% PMDC requires to sit MDCAT.`]);
+  ck.push(m>=80?["ok","Your Matric marks clear the 80% that some 2026 sources report for 9th and 10th."]:["w",`Your Matric marks are ${m.toFixed(1)}%. Some 2026 sources report PMDC needs 80% or more in both 9th and 10th. Check this on the official PMDC notice, because it could block you.`])}
+ if(g==="md"||g==="ah")ck.push(oth?["w","Your domicile province decides where you sit MDCAT and which seats you compete for. This prototype lists Sindh institutions only; your province isn’t added yet."]:["ok",M.dom==="Karachi"?"Karachi domicile competes for the Karachi block of seats at Sindh’s public institutions. Keep your domicile certificate, CNIC or B-Form ready.":"Interior Sindh domicile competes for a separate, smaller quota. Keep your domicile certificate, CNIC or B-Form ready."]);
+ if(g==="ah")ck.push(f>=60?["ok",`Your marks (${f.toFixed(1)}%) are enough for Pharm-D (60%) and the 50% programs.`]:f>=50?["w",`Your marks (${f.toFixed(1)}%) meet the 50% programs but are below Pharm-D’s 60%.`]:["w",`Your marks (${f.toFixed(1)}%) are below the 50% most programs ask for. Raising them matters more than anything else here.`]);
+ let B="",wire=()=>{};
+ const calc=(l3,mx,v3)=>`<h2>Estimate your merit</h2><div class="card calc"><p class="mute">Starts from your marks. Drag to test other results.</p><label>Matric <b id="w1"></b></label><input type="range" id="q1" min="40" max="100" value="${clamp(m,40,100)}"><label>Intermediate <b id="w2"></b></label><input type="range" id="q2" min="40" max="100" value="${clamp(f,40,100)}"><label>${l3} <b id="w3"></b></label><input type="range" id="q3" min="0" max="${mx}" value="${v3}"><div class="res" id="qr"></div></div>`;
+ const hook=fn=>{wire=()=>{const u=()=>{const a=+$("q1").value,i=+$("q2").value,t=+$("q3").value;[a,i,t].forEach((x,k)=>$("w"+(k+1)).textContent=x);$("qr").innerHTML=fn(a,i,t)};["q1","q2","q3"].forEach(r=>$(r).oninput=u);u()}};
+ if(g==="un"){B=`<h2>Routes that fit your group</h2><div class="card"><p>With ${GR[M.grp][0]} and about ${f.toFixed(0)}%, these are the routes that usually fit best. Tap one to see universities, fees and what it needs.</p>${SUG[M.grp].map(x=>`<button class="lnk" data-jump="${x}" style="margin-right:8px">${DN[x][0].toUpperCase()+DN[x].slice(1)}</button>`).join("")}<p class="mute" style="margin-top:12px">${I?"":"This depends on the Intermediate group you choose, so check what each group opens before you pick. "}Your group and marks narrow the list but don’t decide your career.</p></div>`}
+ else if(cfg){const cap=f>=85?4:f>=72?3:2;
+  const L=cfg.list().map(u=>{const ok=u.need.every(x=>as.includes(x)),fit=fitLabel(u,cap),inb=u.lo===null?null:u.lo*2<=b;return{u,ok,fit,inb,s:(ok?0:-100)+(inb===false?-20:0)+(u.tier<=cap?10:u.tier===cap+1?6:0)-Math.abs(u.tier-cap)+(M.dom==="Karachi"&&u.c==="Karachi"?4:0)}}).sort((a,b)=>b.s-a.s);
+  B=`<h2>${cfg.tit}</h2><p class="mute" style="margin-top:6px">Sorted by fit for your marks, budget and group.</p>`+L.map(({u,ok,fit,inb})=>det(u.n,`<span class="tag">${u.c}</span><span class="tag">${u.t}</span><span class="${fit[1]}">${fit[0]}</span>${inb===null?'<span class="tag warn">Fee unverified</span>':inb?'<span class="tag">In budget</span>':'<span class="tag bad">Over budget</span>'}${ok?"":`<span class="tag bad">Needs ${u.need.filter(x=>!as.includes(x)).join(", ")}</span>`}`,u.lo===null?"Fee: check the university":"About PKR "+fmt(u.lo)+(u.hi>u.lo?"–"+fmt(u.hi):"")+" per semester",(g==="ds"&&(u.p||DSP[u.n])?fld("Programs for this goal",u.p||DSP[u.n]):"")+fld("Fees",u.fee)+fld("Entry test",u.test)+fld("Test and deadline timing (last cycle)",u.when)+fld("Merit formula",u.merit)+fld("Last closing merit",u.close)+fld("Good to know",u.note)+`<p class="src">Data confidence: ${u.conf}. Data year: ${dyr(u.n)}. ${offLink(u.n)}</p>`)).join("");
+  if(cfg.calc){B+=calc("Entry test score",100,70);hook((a,i,t)=>cfg.calc==="cs"?`FAST: <strong>${(.1*a+.4*i+.5*t).toFixed(1)}%</strong> <span class="mute">(Karachi CS closed near 70%)</span><br>NED: <strong>${(.4*i+.6*t).toFixed(1)}%</strong> <span class="mute">(40% Intermediate + 60% test; closing merit not verified)</span><br>IBA: decided by aptitude test and interview, not marks.`:`NED: <strong>${(.4*i+.6*t).toFixed(1)}%</strong> <span class="mute">(40% Intermediate + 60% entry test)</span><br>NUST: <strong>${(.1*a+.4*i+.5*t).toFixed(1)}%</strong> <span class="mute">(reported formula)</span><br>FAST: <strong>${(.1*a+.4*i+.5*t).toFixed(1)}%</strong> <span class="mute">(same 10/40/50 formula)</span>`)}
+  if(g!=="un"&&PLAN[g])B+=`<h2>If this route doesn’t work</h2><div class="card">${PLAN[g]}</div>`}
+ else if(g==="md"){const nd=c=>((c-.1*m-.4*f)/.5)*1.8,feas=n=>n<=99?["Within reach","tag"]:n<=150?["Competitive","tag warn"]:n<=180?["Very hard","tag bad"]:["Out of reach","tag bad"];
+  const L=C.map(c=>{const inb=c.lo===null?null:c.lo<=b;return{c,inb,s:(inb===true?3:inb===null?1:-3)+(c.close?c.close/20:0)}}).sort((a,b)=>b.s-a.s);
+  B=`<h2>How MBBS admission works</h2><div class="card"><p><b>MDCAT:</b> one national paper-based test of 180 MCQs in 3 hours, covering Biology, Chemistry, Physics, English and Logical Reasoning, with no negative marking. You need at least 99/180 (55%) for MBBS and 90/180 (50%) for BDS.</p><p style="margin-top:10px"><b>Merit:</b> 10% Matric + 40% FSc + 50% MDCAT. Passing doesn’t get you a seat; your rank does.</p></div><h2>Sindh medical colleges</h2><p class="mute" style="margin-top:6px">Each card shows the MDCAT marks you’d need to match last reported closing merit with your numbers.</p>`+L.map(({c,inb})=>{const n=c.close?nd(c.close):null,fl=n===null?null:feas(n);return det(c.n,`<span class="tag">${c.t}</span>${c.close?`<span class="tag warn">Closed ~${c.close}%</span>`:'<span class="tag warn">Merit unverified</span>'}${fl?`<span class="${fl[1]}">${fl[0]}</span>`:""}${inb===null?'<span class="tag warn">Fee unverified</span>':inb?'<span class="tag">In budget</span>':'<span class="tag bad">Over budget</span>'}`,c.lo===null?"Fee: check the college":"About PKR "+fmt(c.lo)+(c.hi>c.lo?"–"+fmt(c.hi):"")+" per year",(n===null?"":fld("Your numbers",n>180?"Even a perfect MDCAT wouldn’t reach last year’s closing merit with these marks.":n<=0?"Your marks alone already reach it.":`You’d need about ${Math.ceil(n)}/180 in MDCAT to match last reported closing merit.`))+fld("Seats",c.seats)+fld("Tuition",c.fee)+fld("Last closing merit",c.cl)+fld("Good to know",c.note)+`<p class="src">Data confidence: ${c.conf}. Data year: ${dyr(c.n)}. Merit shifts every year. ${offLink(c.n)}</p>`)}).join("")+moreHtml("md")+calc("MDCAT marks out of 180",180,150)+`<h2>If you don’t get a seat</h2>${det("Re-sit MDCAT","","","<p style='margin-top:12px'>2026 sources say there’s no attempt limit. Many students retake once to lift the 50% MDCAT part of merit. Keep applying to private colleges meanwhile.</p>")}${det("Allied health degrees","","","<p style='margin-top:12px'>Pharm-D, DPT, BS Nursing and other health degrees use the same Intermediate results and cost far less than a private MBBS.</p><button class='lnk' data-jump='ah'>See allied health options</button>")}`;
+  hook((a,i,t)=>{const ag=.1*a+.4*i+.5*(t/180*100);return `Aggregate: <strong>${ag.toFixed(1)}%</strong><br>${t>=99?"MDCAT clears the MBBS pass mark.":"MDCAT is below the 99/180 MBBS pass mark."} ${i>=65?"":"Your Intermediate result is below the 65% minimum."}<ul>${C.filter(c=>c.close).map(c=>{const d=ag-c.close;return `<li>${c.n}: ${d>=2?"above last closing merit":d>=-2?"borderline":"below last closing merit"} (${c.close}%)</li>`}).join("")}</ul><span class="mute">Closing merits are last cycle’s reported figures, not predictions.</span>`})}
+ else if(g==="ah"){B=`<h2>Programs you can choose from</h2><p class="mute" style="margin-top:6px">Allied health means the clinical and technical health careers beyond MBBS. They don’t use MDCAT, and many start earning sooner.</p>`+AH.map(p=>{const inb=p.lo===null?null:p.lo<=b;return det(p.n,`<span class="tag">${p.yrs}</span>${inb===null?'<span class="tag warn">Fee unverified</span>':inb?'<span class="tag">In budget</span>':'<span class="tag bad">Over budget</span>'}`,p.lo===null?"Fee: check the university":"About PKR "+fmt(p.lo)+"–"+fmt(p.hi)+" per year",fld("What it is",p.what)+fld("Eligibility",p.elig)+fld("Entry test",p.test)+fld("Fees",p.fee)+fld("Seats",p.seats)+fld("Timing",p.when)+`<p class="src">Official figures are from JSMU’s admission pages; DUHS and Ziauddin details are reported by education sites. Confirm on each university’s page.</p>`)}).join("")+`<h2>How merit works</h2><div class="card"><p>JSMU reports final merit as your Intermediate marks plus your entry test score, with the entry test counting for 60%. Closing merits weren’t found, so apply to more than one.</p><p style="margin-top:10px"><b>Doubling up with MBBS:</b> the same results and subjects work for both, so these programs are a real plan B.</p><button class="lnk" data-jump="md">See the doctor route</button></div>`}
+ else{const G=GEN[g];ck.push(["ok",G.how]);B=`<h2>${G.tit}</h2><p class="mute" style="margin-top:6px">${b<=100?"On your budget, start with the public list.":"Public universities cost far less than private ones."}</p>${moreHtml(g)}<h2>If this route doesn’t work</h2><div class="card">${G.plan}</div>`}
+ $("sm2").innerHTML=`<button class="back" id="bm2">‹ Change answers</button><h1 style="margin-top:6px">${g==="un"?"Finding your route":"Your route to "+DN[g]}</h1><div class="sum"><span>${I?"Intermediate":"Matric"}</span><span>${GR[M.grp][0]}</span><span>${dom}</span></div><h2>Your marks</h2><div class="card"><p>Matric: <b>${m.toFixed(1)}%</b>. Intermediate: <b>${f.toFixed(1)}%</b>${M.hasI?"":" (using your Matric percentage as a guide)"}.</p><p class="mute" style="margin-top:8px">Pakistani board marks are used as they are, with no IBCC conversion. Your official board result decides. Fees, tests and merit figures come from the last admissions cycle reported on university and education sites, and were not re-verified.</p></div><h2>What to sort out</h2><div class="card"><div class="ck"><b>→</b><span>${T}</span></div>${ckHtml(ck)}</div>${B}`;
+ show("sm2");wire();
+ $("bm2").onclick=()=>show("sm");
+ $("sm2").querySelectorAll("[data-jump]").forEach(x=>x.onclick=()=>{M.goal=x.dataset.jump;mRun()})}
+})();
+</script></body></html>
